@@ -1,4 +1,3 @@
-"use client";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -69,8 +68,11 @@ const DATA: Record<string, {
   },
 };
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const p = DATA[params.slug];
+export default async function ProjectPage(
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+  const p = DATA[slug];
   if (!p) return notFound();
 
   return (
