@@ -164,8 +164,8 @@ const TEACHING = [
 ];
 
 const NEWS = [
-  { date: "Sep 2025", text: "I will be on academic/industry job market." },
-  { date: "May 2025", text: "Presenting FLEX at ICRA 2025 (Atlanta, GA)." },
+  { date: "Sep 2025", text: "On academic/industry job market." },
+  { date: "May 2025", text: "FLEX at ICRA 2025 (Atlanta, GA)." },
   { date: "Jan 2025", text: "AAAI 2025: Oral on neurosymbolic cognitive architecture (Open World AI)." },
   { date: "Dec 2024", text: "Joined ONR grant on force-based learning & rapid novelty adaptation using Spot." },
   { date: "Oct 2024", text: "Started NASA/UMass/MIT project on anomaly detection with drones." },
@@ -257,7 +257,8 @@ function Hero() {
 
             <p className="mt-4 leading-relaxed text-zinc-700 dark:text-zinc-300">
             {/* Hi, I’m Shivam — a Ph.D. candidate at Tufts University. I build robots and AI that learn, adapt, and thrive in open worlds */}
-            Hi, I’m Shivam — a Ph.D. candidate at Tufts University. I work at the intersection of robotics and artificial intelligence, focusing on neuro-symbolic AI, reinforcement learning for open-world robotics.
+            I am a Ph.D. candidate in Computer Science at Tufts University, specializing in robotics and artificial intelligence. My research focuses on neuro-symbolic AI and reinforcement learning for open-world robotics.
+            I envision a future where autonomous robots handle the unexpected and can learn, adapt, and improve by observing our daily lives. Not just tools, but lifelong collaborators in our homes and workplaces.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-2">

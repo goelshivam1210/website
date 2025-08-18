@@ -11,60 +11,117 @@ const DATA: Record<string, {
   highlights: string[];
   media: { type:"img"|"video"; src:string; alt?:string }[];
   people: { name:string; role?:string; url?:string }[];
-  pubs: string[]; // match titles from PUBS in page.tsx
+  pubs: { title: string; year?: string | number; venue?: string; href?: string; links?: { label: string; href: string }[] }[]; // title + optional labeled links + year/venue
   links: { label:string; href:string }[];
 }> = {
   "force-space": {
     title: "Object-based Force-space Learning",
-    blurb: "Robot-agnostic force policies; sim→real to Spot.",
-    abstract: "We study force-space policies that compose prismatic/revolute skills and transfer across robots via object-centric representations and symbolic planning.",
+    blurb: "Robot-agnostic force policies; sim→real.",
+    abstract: "We use force based formulation to learn object centric manipulation policies using reinforcement learning. After training in simulation, we use inverse kinematics to transfer these policies to a variety of robots including Spot, UR5, Panda and Kinova.",
     highlights: [
       "Robot-agnostic policies in force-space",
       "Compositional primitives (prismatic/revolute)",
-      "Sim→real transfer to Spot",
+      "Sim→real transfer",
     ],
     media: [{ type:"img", src:"/fs-hero.jpg", alt:"Force-space policy"}],
-    people: [{ name:"Shivam Goel" }, { name:"Collaborators", role:"" }],
+    people: [{ name:"Shivam Goel" }, { name:"Shijie Fang", role:"" }, { name:"Wenchang Gao" }],
     pubs: [
-      "FLEX: A Framework for Learning Robot-Agnostic Force-based Skills Involving Sustained Contact Object Manipulation",
+      {
+        title: "FLEX: A Framework for Learning Robot-Agnostic Force-based Skills Involving Sustained Contact Object Manipulation",
+        year: 2025,
+        venue: "IEEE-ICRA",
+        links: [
+          { label: "arXiv", href: "https://arxiv.org/abs/2503.13418" },
+          { label: "Website", href: "https://tufts-ai-robotics-group.github.io/FLEX/" },
+        ],
+      },
     ],
-    links: [
-      { label:"Project", href:"https://tufts-ai-robotics-group.github.io/FLEX/" },
-      { label:"arXiv", href:"https://arxiv.org/abs/2503.13418" },
-    ],
+    links: []
   },
   "neurosymbolic-open-world": {
-    title: "Neurosymbolic Systems for Open-world Novelty Handling",
+    title: "Neurosymbolic Agents for Open-world Novelty Handling",
     blurb: "Hybrid reasoning and RL to detect, adapt, and recover from novelties.",
-    abstract: "Neurosymbolic agents combine logical structure and learned policies to act robustly under novelty, with goal-conditioned continual learning.",
+      abstract: "\"Open world\" environments are those in which novel objects, agents, events, and more can appear and contradict previous understandings of the environment. This contradicts the \"closed world\" assumption used in most AI research, where the environment is assumed to be fully understood and unchanging.The types of environments AI agents can be deployed in arelimited by the inability to handle the novelties that occur in open world environments. In this project, we develop Cognitive architectures, and general algorithms and frameworks that enable agents to detect, adapt, and recover from novelties in open world environments. We use a combination of symbolic reasoning and reinforcement learning to achieve this. Our work includes the development of neurosymbolic cognitive architectures, goal-conditioned continual learning algorithms, and rapid recovery mechanisms.",
     highlights: [
       "Goal-conditioned continual learning",
       "Novelty detection and recovery",
-      "Cognitive-architecture integration",
+      "Cognitive-architecture",
     ],
     media: [{ type:"img", src:"/ns-hero.jpg", alt:"Neurosymbolic"}],
-    people: [{ name:"Shivam Goel" }, { name:"Collaborators" }],
+      people: [{ name: "Shivam Goel" }],
     pubs: [
-      "A Framework for Neurosymbolic Goal-Conditioned Continual Learning for Open World Environments",
-      "Neurosymbolic Cognitive Architecture for Handling Novelties in Open Worlds",
-      "RAPid-Learn: Learning to Recover for Handling Novelties in Open-World Environments",
+      {
+        title: "A neurosymbolic cognitive architecture framework for handling novelties in open worlds",
+        year: 2024,
+        venue: "AI Journal",
+        links: [
+          { label: "PDF", href: "https://hrilab.tufts.edu/publications/goeletal24aij.pdf" },
+          { label: "DOI", href: "https://www.sciencedirect.com/science/article/pii/S000437022400047X?casa_token=YPjoDi2mJYMAAAAA:4ylWR_raJTP91XDu8Lqgx0ysoLPI_Nfa_9_2VUI5zgCZb76vh9Oe1nS_MEhhEfCSGgc6jqhG" }
+        ],
+      },
+      {
+        title: "A framework for neurosymbolic goal-conditioned continual learning in open world environments",
+        year: 2024,
+        venue: "IEEE IROS",
+        links: [
+          { label: "PDF", href: "https://hrilab.tufts.edu/publications/lorangetal2024iros.pdf" },
+          { label: "DOI", href: "https://ieeexplore.ieee.org/abstract/document/10801627" },
+        ],
+        },
+            {
+        title: "Rapid-learn: A framework for learning to recover for handling novelties in open-world environments",
+        year: 2022,
+        venue: "IEEE ICDL",
+        links: [
+          { label: "PDF", href: "https://hrilab.tufts.edu/publications/goeletal22icdl.pdf" },
+          { label: "arXiv", href: "https://arxiv.org/pdf/2206.12493" },
+          { label: "DOI", href: "https://ieeexplore.ieee.org/abstract/document/9962230/" },
+          { label: "Code", href: "https://github.com/goelshivam1210/RAPid-Learn" },
+        ],
+        },
+      
+      {
+        title: "Spotter: Extending symbolic planning operators through targeted reinforcement learning",
+        year: 2021,
+        venue: "AAMAS",
+        links: [
+          { label: "PDF", href: "https://hrilab.tufts.edu/publications/sarathy2021aamas.pdf" },
+          { label: "arXiv", href: "https://arxiv.org/pdf/2012.13037" },
+          { label: "DOI", href: "https://www.ifaamas.org/Proceedings/aamas2021/pdfs/p1118.pdf" }
+        ],
+      },
     ],
     links: [],
   },
   "open-world-benchmarks": {
     title: "Domains for Open-world Benchmarking",
     blurb: "NovelGym and evaluation suites for hybrid planning + learning agents.",
-    abstract: "We design domains and metrics that evaluate novelty handling and safety across open-world scenarios with hybrid planning+RL agents.",
+    abstract: "We design domains and metrics that evaluate novelty handling across open-world scenarios with hybrid planning+RL agents. We develop openAI gym based domains like NovelGym and NovelGridworlds that provide a flexible framework for benchmarking. We also provide clear metrics and protocols for evaluating novelty handling.",
     highlights: ["NovelGym benchmarks", "Clear metrics & protocols"],
     media: [{ type:"img", src:"/ng-hero.jpg", alt:"NovelGym"}],
-    people: [{ name:"Shivam Goel" }, { name:"Collaborators" }],
+    people: [{ name:"Shivam Goel" }, { name:"Gyan Tatiya" }, { name:"Yichen Wei" }, { name:"Panaiogitis Lymperpolous" }, { name:"Klara Chura" }],
     pubs: [
-      "NovelGym: A Flexible Ecosystem for Hybrid Planning and Learning Agents Designed for Open Worlds",
+      {
+        title: "NovelGym: A Flexible Ecosystem for Hybrid Planning and Learning Agents Designed for Open Worlds",
+        year: 2024,
+        venue: "AAMAS",
+        links: [
+          { label: "PDF", href: "https://www.ifaamas.org/Proceedings/aamas2024/pdfs/p688.pdf" },
+          { label: "Code", href: "https://github.com/tufts-ai-robotics-group/NovelGym" },
+          { label: "Website", href: "https://clarech712.github.io/ng-website/" }
+        ],
+      },
+      {
+        title: "NovelGridworlds: A Benchmark Environment for Detecting and Adapting to Novelties in Open Worlds",
+        year: 2021,
+        venue: "AAMAS-ALA Workshop",
+        links: [
+          { label: "PDF", href: "https://mulip.cs.tufts.edu/papers/ALA2021_paper_61.pdf" },
+          { label: "Code", href: "https://github.com/gtatiya/gym-novel-gridworlds" },
+        ],
+      }
     ],
-    links: [
-      { label:"Website", href:"https://clarech712.github.io/ng-website/" },
-      { label:"Paper", href:"https://www.ifaamas.org/Proceedings/aamas2024/pdfs/p688.pdf" },
-    ],
+    links: []
   },
 };
 
@@ -100,6 +157,41 @@ export default async function ProjectPage(
         <CardContent className="text-sm text-zinc-700 dark:text-zinc-300">{p.abstract}</CardContent>
       </Card>
 
+      {/* related pubs */}
+      <Card className="mt-4">
+        <CardHeader><CardTitle className="text-base">Related Publications</CardTitle></CardHeader>
+        <CardContent className="text-sm">
+            <ul className="space-y-3">
+              {p.pubs.map((pub) => (
+                <li key={pub.title} className="">
+                  {/* top row: year | title | venue */}
+                  <div className="flex items-baseline justify-between gap-3 flex-wrap">
+                    <span className="text-xs text-zinc-500 min-w-[3.5rem]">{pub.year ?? ''}</span>
+                    <span className="flex-1 text-zinc-900 dark:text-zinc-100">{pub.title}</span>
+                    <span className="text-xs text-zinc-500 whitespace-nowrap">{pub.venue ?? ''}</span>
+                  </div>
+                  {/* links row */}
+                  {(pub.links && pub.links.length > 0) ? (
+                    <div className="mt-2 ml-[3.5rem] flex flex-wrap gap-2">
+                      {pub.links.map((l) => (
+                        <Button key={l.href} asChild variant="secondary" size="sm">
+                          <Link href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</Link>
+                        </Button>
+                      ))}
+                    </div>
+                  ) : pub.href ? (
+                    <div className="mt-2 ml-[3.5rem] flex flex-wrap gap-2">
+                      <Button asChild variant="secondary" size="sm">
+                        <Link href={pub.href} target="_blank" rel="noopener noreferrer">Link</Link>
+                      </Button>
+                    </div>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+        </CardContent>
+      </Card>
+
       {/* people */}
       <Card className="mt-4">
         <CardHeader><CardTitle className="text-base">People</CardTitle></CardHeader>
@@ -115,26 +207,16 @@ export default async function ProjectPage(
         </CardContent>
       </Card>
 
-      {/* related pubs */}
-      <Card className="mt-4">
-        <CardHeader><CardTitle className="text-base">Related Publications</CardTitle></CardHeader>
-        <CardContent className="text-sm">
-          <ul className="list-disc pl-5">
-            {p.pubs.map(title => <li key={title}>{title}</li>)}
-          </ul>
-        </CardContent>
-      </Card>
-
       {/* resources */}
-      {p.links.length > 0 && (
+      {p.links?.length ? (
         <div className="mt-4 flex gap-2 flex-wrap">
-          {p.links.map(l => (
+          {(p.links || []).map(l => (
             <Button key={l.href} asChild variant="secondary" size="sm">
               <Link href={l.href}>{l.label}</Link>
             </Button>
           ))}
         </div>
-      )}
+      ) : null}
     </section>
   );
 }
