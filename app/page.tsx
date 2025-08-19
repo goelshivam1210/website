@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, Moon, SunMedium, Mail, MapPin, Github, Linkedin, FileText, GraduationCap, FlaskConical, BookOpen, Cpu, Newspaper, LibraryBig, ArrowRight, Link as LinkIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
@@ -126,14 +126,6 @@ const PUBS = [
     links: [ { label: "PDF", href: "https://www.ijcai.org/Proceedings/2019/0906.pdf" } ],
     tags: ["RL", "smart home", "human-robot interaction"],
   },
-  {
-    year: 2021,
-    title: "Spotter: Extending Symbolic Planning Operators through Targeted RL",
-    authors: "V. Sarathy, D. Kasenberg, S. Goel, J. Sinapov, M. Scheutz",
-    venue: "AAMAS 2021",
-    links: [ { label: "PDF", href: "https://arxiv.org/abs/2012.13037" } ],
-    tags: ["planning", "RL"],
-  }
 ];
 
 const PROJECTS = [
@@ -186,7 +178,7 @@ function NavItem({ href, children }: { href: string; children: React.ReactNode }
   );
 }
 
-function Header({ dark, setDark }: { dark: boolean; setDark: (v: boolean) => void }) {
+function Header({ dark, setDark, mounted }: { dark: boolean; setDark: (v: boolean) => void; mounted: boolean }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-zinc-950/60 border-b dark:border-zinc-800">
@@ -203,8 +195,8 @@ function Header({ dark, setDark }: { dark: boolean; setDark: (v: boolean) => voi
             <NavItem href="#contact">Contact</NavItem>
           </nav>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" onClick={() => setDark(!dark)} aria-label="Toggle theme">
-              {dark ? <SunMedium className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            <Button variant="ghost" size="icon" onClick={() => { const next = !dark; setDark(next); const root = document.documentElement; root.classList.toggle('dark', next); try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch {} }} aria-label="Toggle theme">
+              {mounted && dark ? <SunMedium className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
             <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setOpen(!open)}>
               <Menu className="h-5 w-5" />
@@ -303,42 +295,54 @@ function Hero() {
 
 function Research() {
   const areas = [
-    { t: "Force-space Policies", d: "Robot-agnostic control via contact forces." },
-    { t: "Articulated Objects", d: "Prismatic & revolute skill learning." },
-    { t: "Neuro-Symbolic RL", d: "Planning-informed exploration & safety." },
-    { t: "Policy Transfer & Sim→Real", d: "From simulation to Spot/UR5/Panda/Kinova." },
-    { t: "Safety & Evaluation", d: "Failure recovery, novelty detection, benchmarks." },
+    { t: "Open-World Robotics", d: "Agents that handle novelty, uncertainty, and unstructured settings." },
+    { t: "Force-Space Policies", d: "Object-centric control via contact forces; transfers across robots." },
+    { t: "Articulated Objects", d: "Learning prismatic and revolute skills with sustained contact." },
+    { t: "Neuro-Symbolic RL", d: "Planning-informed exploration, safety checks, and recovery." },
+    { t: "Sim→Real & Transfer", d: "From simulation to Spot/UR5/Panda/Kinova with minimal retraining." },
+    { t: "Safety & Evaluation", d: "Failure recovery, novelty detection, and standardized benchmarks." },
   ];
-  const methods = ["RL (PPO/TD3/HER)", "PDDL", "ROS", "Spot SDK"];
-  const robots = ["Spot", "UR5",, "Kinova", "Locobot", "Turtlebot"];
+
+  const methods = ["RL (PPO/TD3)", "Force-space control", "PDDL Planning", "ROS", "Spot SDK"];
+  const robots  = ["Spot", "UR5", "Panda", "Kinova", "LoCoBot", "TurtleBot"]; // fixed: no double comma
+
   return (
     <section id="research" className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex items-center gap-2 mb-3">
-        <FlaskConical className="h-5 w-5"/>
+        <FlaskConical className="h-5 w-5" aria-hidden />
         <h2 className="text-xl font-semibold tracking-tight">Research</h2>
       </div>
+
       <p className="text-sm text-zinc-700 dark:text-zinc-300 max-w-3xl">
-        My work studies <b>force-space manipulation</b>, learning policies that generalize across objects and robot platforms. I combine RL with symbolic planning and object-centric representations to enable safe adaptation in open-world settings.
+        My research aims to advance AI and robotics for <span className="font-medium">open-world environments</span>, where novelty, uncertainty, and unstructured interactions are the norm.
+        A central focus is <span className="font-medium">force-space manipulation</span>, grounding policies in physical interaction and object-centric representations to transfer across robot embodiments.
+        By combining <span className="font-medium">learning</span>, <span className="font-medium">planning</span>, and <span className="font-medium">structured object models</span>, I build systems that unify high-level reasoning with low-level control—toward autonomous robots that thrive in dynamic real-world settings.
       </p>
+
       <div className="mt-4 grid md:grid-cols-3 gap-3">
-        {areas.map((x) => (
-          <Card key={x.t}>
+        {areas.map(x => (
+          <Card key={x.t} className="h-full">
             <CardHeader><CardTitle className="text-base">{x.t}</CardTitle></CardHeader>
             <CardContent className="text-sm text-zinc-700 dark:text-zinc-300">{x.d}</CardContent>
           </Card>
         ))}
       </div>
+
       <div className="mt-4 grid md:grid-cols-2 gap-3">
         <Card>
           <CardHeader><CardTitle className="text-sm">Methods</CardTitle></CardHeader>
           <CardContent className="text-xs flex flex-wrap gap-2">
-            {methods.map(m => <span key={m} className={`px-2 py-1 rounded-full ${TAGS.neutral}`}>{m}</span>)}
+            {methods.map(m => (
+              <span key={m} className={`px-2 py-1 rounded-full ${TAGS.neutral}`}>{m}</span>
+            ))}
           </CardContent>
         </Card>
         <Card>
           <CardHeader><CardTitle className="text-sm">Robots</CardTitle></CardHeader>
           <CardContent className="text-xs flex flex-wrap gap-2">
-            {robots.map(r => <span key={r} className={`px-2 py-1 rounded-full ${TAGS.neutral}`}>{r}</span>)}
+            {robots.map(r => (
+              <span key={r} className={`px-2 py-1 rounded-full ${TAGS.neutral}`}>{r}</span>
+            ))}
           </CardContent>
         </Card>
       </div>
@@ -564,10 +568,18 @@ function Contact() {
 
 export default function AcademicSite() {
   const [dark, setDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    try {
+      const isDark = document.documentElement.classList.contains('dark');
+      setDark(isDark);
+    } catch {}
+  }, []);
   return (
-    <div className={dark ? "dark" : ""}>
+    <div>
       <div className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
-        <Header dark={dark} setDark={setDark} />
+        <Header dark={dark} setDark={setDark} mounted={mounted} />
         <main>
           <Hero />
           <Research />

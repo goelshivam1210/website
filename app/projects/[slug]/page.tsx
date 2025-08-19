@@ -24,12 +24,12 @@ const DATA: Record<string, {
       "Sim→real transfer",
     ],
     media: [{ type:"img", src:"/fs-hero.jpg", alt:"Force-space policy"}],
-    people: [{ name:"Shivam Goel" }, { name:"Shijie Fang", role:"" }, { name:"Wenchang Gao" }],
+    people: [{ name:"Shivam Goel" }, { name:"Shijie Fang" }, { name:"Wenchang Gao" }],
     pubs: [
       {
         title: "FLEX: A Framework for Learning Robot-Agnostic Force-based Skills Involving Sustained Contact Object Manipulation",
         year: 2025,
-        venue: "IEEE-ICRA",
+        venue: "IEEE ICRA",
         links: [
           { label: "arXiv", href: "https://arxiv.org/abs/2503.13418" },
           { label: "Website", href: "https://tufts-ai-robotics-group.github.io/FLEX/" },
@@ -48,7 +48,7 @@ const DATA: Record<string, {
       "Cognitive-architecture",
     ],
     media: [{ type:"img", src:"/ns-hero.jpg", alt:"Neurosymbolic"}],
-      people: [{ name: "Shivam Goel" }],
+      people: [{ name: "Shivam Goel" }, { name: "Yash Shukla" }, { name: "Panagiotis Lymperpolous" }, { name: "Pierrick Lorang" }, { name: "Ravenna Thielstorm" }, { name: "Vasanth Sarathy" }],
     pubs: [
       {
         title: "A neurosymbolic cognitive architecture framework for handling novelties in open worlds",
@@ -90,6 +90,16 @@ const DATA: Record<string, {
           { label: "DOI", href: "https://www.ifaamas.org/Proceedings/aamas2021/pdfs/p1118.pdf" }
         ],
       },
+      {
+        title: "A novelty-centric agent architecture for changing worlds",
+        year: 2021,
+        venue: "AAMAS",
+        links: [
+          { label: "PDF", href: "https://hrilab.tufts.edu/publications/muhammadetal21aamas.pdf" },
+          { label: "arXiv", href: "https://arxiv.org/pdf/2012.13037" },
+          { label: "DOI", href: "https://ifaamas.org/Proceedings/aamas2021/pdfs/p925.pdf" }
+        ],
+      },
     ],
     links: [],
   },
@@ -99,7 +109,7 @@ const DATA: Record<string, {
     abstract: "We design domains and metrics that evaluate novelty handling across open-world scenarios with hybrid planning+RL agents. We develop openAI gym based domains like NovelGym and NovelGridworlds that provide a flexible framework for benchmarking. We also provide clear metrics and protocols for evaluating novelty handling.",
     highlights: ["NovelGym benchmarks", "Clear metrics & protocols"],
     media: [{ type:"img", src:"/ng-hero.jpg", alt:"NovelGym"}],
-    people: [{ name:"Shivam Goel" }, { name:"Gyan Tatiya" }, { name:"Yichen Wei" }, { name:"Panaiogitis Lymperpolous" }, { name:"Klara Chura" }],
+    people: [{ name:"Shivam Goel" }, { name:"Gyan Tatiya" }, { name:"Yichen Wei" }, { name:"Panagiotis Lymperopoulos" }, { name:"Klara Chura" }],
     pubs: [
       {
         title: "NovelGym: A Flexible Ecosystem for Hybrid Planning and Learning Agents Designed for Open Worlds",
