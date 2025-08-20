@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, Moon, SunMedium, Mail, MapPin, Github, Linkedin, FileText, GraduationCap, FlaskConical, BookOpen, Cpu, Newspaper, LibraryBig, ArrowRight, Link as LinkIcon } from "lucide-react";
+import { Menu, Moon, SunMedium, Mail, MapPin, Github, Linkedin, FileText, GraduationCap, FlaskConical, BookOpen, Cpu, Newspaper, LibraryBig, ArrowRight, Link as LinkIcon, ChevronDown, School } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -195,9 +195,11 @@ function Header({ dark, setDark, mounted }: { dark: boolean; setDark: (v: boolea
             <NavItem href="#contact">Contact</NavItem>
           </nav>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" onClick={() => { const next = !dark; setDark(next); const root = document.documentElement; root.classList.toggle('dark', next); try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch {} }} aria-label="Toggle theme">
-              {mounted && dark ? <SunMedium className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
+            {mounted && (
+              <Button variant="ghost" size="icon" onClick={() => { const next = !dark; setDark(next); const root = document.documentElement; root.classList.toggle('dark', next); try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch {} }} aria-label="Toggle theme">
+                {dark ? <SunMedium className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+            )}
             <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setOpen(!open)}>
               <Menu className="h-5 w-5" />
             </Button>
@@ -219,7 +221,7 @@ function Header({ dark, setDark, mounted }: { dark: boolean; setDark: (v: boolea
   );
 }
 
-function Hero() {
+function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: boolean; setEducationExpanded: (v: boolean) => void }) {
   return (
     <section id="top" className="max-w-6xl mx-auto px-4 pt-10 pb-8">
       <div className="grid md:grid-cols-[1.1fr,0.9fr] gap-8 items-center">
@@ -270,21 +272,73 @@ function Hero() {
         </div>
         <Card className="overflow-hidden">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2"><GraduationCap className="h-5 w-5"/> About</CardTitle>
+            <CardTitle className="flex items-center gap-2"><GraduationCap className="h-5 w-5"/> Education</CardTitle>
           </CardHeader>
           <CardContent className="text-sm">
-            <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
-              <MapPin className="h-4 w-4"/> {PROFILE.location}
+            {/* Collapsed state - always visible */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+                <MapPin className="h-4 w-4"/> {PROFILE.location}
+              </div>
+              <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+                <Mail className="h-4 w-4"/> <a className="underline" href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a>
+              </div>
             </div>
-            <div className="mt-2 flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
-              <Mail className="h-4 w-4"/> <a className="underline" href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a>
-            </div>
-            <Separator className="my-3"/>
-            <div className="grid grid-cols-2 gap-2">
-              <Badge className="justify-start" variant="secondary"><Cpu className="h-4 w-4 mr-1"/>RL</Badge>
-              <Badge className="justify-start" variant="secondary"><FlaskConical className="h-4 w-4 mr-1"/>Robotics</Badge>
-              <Badge className="justify-start" variant="secondary"><LibraryBig className="h-4 w-4 mr-1"/>Planning</Badge>
-              <Badge className="justify-start" variant="secondary"><Newspaper className="h-4 w-4 mr-1"/>Publications</Badge>
+            
+            {/* Expandable education details */}
+            <div className="mt-4">
+              {!educationExpanded && (
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setEducationExpanded(true)}
+                  className="w-full justify-between p-0 h-auto text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+                >
+                  <span>Show more</span>
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              )}
+              
+              {educationExpanded && (
+                <div className="mt-3 space-y-3 pt-3 border-t">
+                  {/* Current PhD */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <div className="font-medium">Ph.D. Computer Science</div>
+                      <Badge variant="secondary" className="text-xs">2020-Present</Badge>
+                    </div>
+                    <div className="text-zinc-600 dark:text-zinc-400">Tufts University</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Advisors: Dr. Jivko Sinapov & Dr. Matthias Scheutz</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Research: Neuro-symbolic AI, RL & Robotics</div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  {/* MS */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <div className="font-medium">M.S. Computer Science</div>
+                      <Badge variant="secondary" className="text-xs">2015-2017</Badge>
+                    </div>
+                    <div className="text-zinc-600 dark:text-zinc-400">Washington State University</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Advisors: Dr. Matthew E. Taylor</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Research: Computer Vision, Robotics</div>
+                  </div>
+                  
+                  {/* Show less button at the bottom */}
+                  <div className="pt-2">
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => setEducationExpanded(false)}
+                      className="w-full justify-between p-0 h-auto text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                    >
+                      <span>Show less</span>
+                      <ChevronDown className="h-4 w-4 rotate-180" />
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -313,16 +367,16 @@ function Research() {
         <h2 className="text-xl font-semibold tracking-tight">Research</h2>
       </div>
 
-      <p className="text-sm text-zinc-700 dark:text-zinc-300 max-w-3xl">
+      <p className="text-sm text-zinc-700 dark:text-zinc-300 max-w-5xl">
         My research aims to advance AI and robotics for <span className="font-medium">open-world environments</span>, where novelty, uncertainty, and unstructured interactions are the norm.
         A central focus is <span className="font-medium">force-space manipulation</span>, grounding policies in physical interaction and object-centric representations to transfer across robot embodiments.
-        By combining <span className="font-medium">learning</span>, <span className="font-medium">planning</span>, and <span className="font-medium">structured object models</span>, I build systems that unify high-level reasoning with low-level control—toward autonomous robots that thrive in dynamic real-world settings.
+        By combining <span className="font-medium">learning</span>, <span className="font-medium">planning</span>, and <span className="font-medium">structured object models</span>, I build frameworks and algorithms that unify high-level reasoning with low-level control aiming toward autonomous robots that thrive in dynamic real-world settings.
       </p>
 
       <div className="mt-4 grid md:grid-cols-3 gap-3">
         {areas.map(x => (
           <Card key={x.t} className="h-full">
-            <CardHeader><CardTitle className="text-base">{x.t}</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="text-sm">{x.t}</CardTitle></CardHeader>
             <CardContent className="text-sm text-zinc-700 dark:text-zinc-300">{x.d}</CardContent>
           </Card>
         ))}
@@ -552,13 +606,21 @@ function Contact() {
             <div className="space-y-2">
               <div className="flex items-center gap-2"><Mail className="h-4 w-4"/> <a className="underline" href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a></div>
               <div className="flex items-center gap-2"><MapPin className="h-4 w-4"/> {PROFILE.location}</div>
+              <div className="flex items-center gap-2">
+                <School className="h-4 w-4"/> 
+                <div className="text-sm">
+                  <div> Joyce Cummings Center (JCC) </div>
+                  <div>177 College Ave, Room 483-06</div>
+                </div>
+              </div>
               <div className="flex items-center gap-2"><Github className="h-4 w-4"/> <a className="underline" href={PROFILE.github}>GitHub</a></div>
               <div className="flex items-center gap-2"><Linkedin className="h-4 w-4"/> <a className="underline" href={PROFILE.linkedin}>LinkedIn</a></div>
             </div>
-            <form className="flex gap-2">
-              <Input placeholder="Your email" type="email"/>
-              <Button type="button">Say hi <ArrowRight className="ml-1 h-4 w-4"/></Button>
-            </form>
+            <Button asChild>
+              <a href={`mailto:${PROFILE.email}?subject=Hello from your website`}>
+                Say hi <ArrowRight className="ml-1 h-4 w-4"/>
+              </a>
+            </Button>
           </div>
         </CardContent>
       </Card>
@@ -569,19 +631,27 @@ function Contact() {
 export default function AcademicSite() {
   const [dark, setDark] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [educationExpanded, setEducationExpanded] = useState(false);
+  
   useEffect(() => {
     setMounted(true);
-    try {
-      const isDark = document.documentElement.classList.contains('dark');
-      setDark(isDark);
-    } catch {}
+    // Only run theme logic after component mounts
+    if (typeof window !== 'undefined') {
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        setDark(isDark);
+        document.documentElement.classList.toggle('dark', isDark);
+      } catch {}
+    }
   }, []);
   return (
     <div>
       <div className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
         <Header dark={dark} setDark={setDark} mounted={mounted} />
         <main>
-          <Hero />
+          <Hero educationExpanded={educationExpanded} setEducationExpanded={setEducationExpanded} />
           <Research />
           <Publications />
           <Projects />
