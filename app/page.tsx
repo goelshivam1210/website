@@ -156,7 +156,7 @@ const TEACHING = [
 ];
 
 const NEWS = [
-  { date: "Sep 2025", text: "On academic/industry job market." },
+  { date: "Sep 2025", text: "I am on the Job market. Expected graduation in May 2026." },
   { date: "May 2025", text: "FLEX at ICRA 2025 (Atlanta, GA)." },
   { date: "Jan 2025", text: "AAAI 2025: Oral on neurosymbolic cognitive architecture (Open World AI)." },
   { date: "Dec 2024", text: "Joined ONR grant on force-based learning & rapid novelty adaptation using Spot." },
@@ -422,15 +422,15 @@ function Publications() {
       </div>
       <div className="mb-3 text-xs text-zinc-600 dark:text-zinc-400 flex flex-wrap gap-3">
         <span>Legend:</span>
-        <span>⭐ first-author</span>
-        <span>✳ co-first</span>
-        <span>🧭 corresponding</span>
+        {/* <span>⭐ first-author</span> */}
+        {/* <span>✳ co-first</span> */}
+        {/* <span>🧭 corresponding</span> */}
         <span>🗣 long talk</span>
         <span>🎤 oral</span>
-        <span>🏆 best paper</span>
-        <span>🎥 video</span>
-        <span>💾 code</span>
-        <span>🌐 project</span>
+        {/* <span>🏆 best paper</span> */}
+        {/* <span>🎥 video</span> */}
+        {/* <span>💾 code</span> */}
+        {/* <span>🌐 project</span> */}
         <span>🔁 sim→real</span>
         <span>🧪 real-robot</span>
         <span>📦 benchmark</span>
