@@ -36,7 +36,7 @@ const PUBS = [
       { label: "Project", href: "https://tufts-ai-robotics-group.github.io/FLEX/" }
     ],
     tags: ["force-space", "robot-agnostic", "sustained contact"],
-    icons: ["✳ co-first", "🔁 sim→real", "🧪 real-robot", "🌐 project"],
+    icons: [ "🔁 sim→real", "🧪 real-robot"],
   },
   {
     year: 2024,
@@ -62,7 +62,7 @@ const PUBS = [
     venue: "RLC 2024 / RLJ 2024",
     links: [ { label: "PDF", href: "https://aabl.cs.tufts.edu/papers/rlc2024_james.pdf" } ],
     tags: ["world models", "human demos"],
-    icons: ["🧾 journal"],
+    icons: [""],
   },
   {
     year: 2024,

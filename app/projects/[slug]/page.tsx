@@ -10,6 +10,7 @@ const DATA: Record<string, {
   abstract: string;
   highlights: string[];
   media: { type:"img"|"video"; src:string; alt?:string }[];
+  videos: { src: string; title?: string }[];
   people: { name:string; role?:string; url?:string }[];
   pubs: { title: string; year?: string | number; venue?: string; href?: string; links?: { label: string; href: string }[] }[]; // title + optional labeled links + year/venue
   links: { label:string; href:string }[];
@@ -24,6 +25,10 @@ const DATA: Record<string, {
       "Sim→real transfer",
     ],
     media: [{ type:"img", src:"/fs-hero.jpg", alt:"Force-space policy"}],
+    videos: [
+      { src: "https://www.youtube.com/embed/MvVBS6EenZE", title: "FLEX Demo" },
+      { src: "https://www.youtube.com/embed/heBp1l0w8xI", title: "Force-space Learning" },
+    ],
     people: [{ name:"Shivam Goel" }, { name:"Shijie Fang" }, { name:"Wenchang Gao" }],
     pubs: [
       {
@@ -48,6 +53,7 @@ const DATA: Record<string, {
       "Cognitive-architecture",
     ],
     media: [{ type:"img", src:"/ns-hero.jpg", alt:"Neurosymbolic"}],
+    videos: [],
       people: [{ name: "Shivam Goel" }, { name: "Yash Shukla" }, { name: "Panagiotis Lymperpolous" }, { name: "Pierrick Lorang" }, { name: "Ravenna Thielstorm" }, { name: "Vasanth Sarathy" }],
     pubs: [
       {
@@ -109,6 +115,7 @@ const DATA: Record<string, {
     abstract: "We design domains and metrics that evaluate novelty handling across open-world scenarios with hybrid planning+RL agents. We develop openAI gym based domains like NovelGym and NovelGridworlds that provide a flexible framework for benchmarking. We also provide clear metrics and protocols for evaluating novelty handling.",
     highlights: ["NovelGym benchmarks", "Clear metrics & protocols"],
     media: [{ type:"img", src:"/ng-hero.jpg", alt:"NovelGym"}],
+    videos: [],
     people: [{ name:"Shivam Goel" }, { name:"Gyan Tatiya" }, { name:"Yichen Wei" }, { name:"Panagiotis Lymperopoulos" }, { name:"Klara Chura" }],
     pubs: [
       {
@@ -166,6 +173,35 @@ export default async function ProjectPage(
         <CardHeader><CardTitle className="text-base">Description</CardTitle></CardHeader>
         <CardContent className="text-sm text-zinc-700 dark:text-zinc-300">{p.abstract}</CardContent>
       </Card>
+
+      {/* videos */}
+      {p.videos && p.videos.length > 0 && (
+        <Card className="mt-4">
+          <CardHeader><CardTitle className="text-base">Videos</CardTitle></CardHeader>
+          <CardContent className="text-sm">
+            <div className="grid md:grid-cols-2 gap-4">
+              {p.videos.map((video, i) => (
+                <div key={i} className="space-y-2">
+                  {video.src.includes('youtube.com/embed') || video.src.includes('youtu.be') ? (
+                    <iframe 
+                      src={video.src} 
+                      title={video.title || `Video ${i + 1}`}
+                      className="rounded-lg w-full aspect-video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <video src={video.src} controls className="rounded-lg w-full" />
+                  )}
+                  {video.title && (
+                    <p className="text-zinc-600 dark:text-zinc-400 text-xs text-center">{video.title}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* related pubs */}
       <Card className="mt-4">
