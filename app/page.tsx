@@ -45,6 +45,7 @@ const PUBS = [
     venue: "AIJ Special Issue (Open World AI) — in press",
     links: [ { label: "PDF", href: "https://www.sciencedirect.com/science/article/am/pii/S000437022400047X" } ],
     tags: ["neurosymbolic", "novelty"],
+    icons: ["🧾 journal", "🗣 long talk" ],
   },
   {
     year: 2024,
@@ -74,7 +75,7 @@ const PUBS = [
       { label: "Website", href: "https://clarech712.github.io/ng-website/" }
     ],
     tags: ["benchmark", "open-world"],
-    icons: ["📦 benchmark", "💾 code"],
+    icons: ["📦 benchmark", "🎤 oral" ]
   },
   {
     year: 2023,
@@ -83,7 +84,7 @@ const PUBS = [
     venue: "IROS 2023",
     links: [ { label: "PDF", href: "https://mulip.cs.tufts.edu/papers/shukla_iros_23.pdf" } ],
     tags: ["transfer", "imitation"],
-    icons: ["🎥 video"],
+    icons: ["🎤 oral"],
   },
   {
     year: 2022,
@@ -92,7 +93,7 @@ const PUBS = [
     venue: "ICDL 2022",
     links: [ { label: "arXiv", href: "https://arxiv.org/abs/2206.12493" } ],
     tags: ["novelty", "hybrid planning+RL"],
-    icons: ["⭐ first-author"],
+    icons: ["🗣 long talk"],
   },
   {
     year: 2021,
@@ -252,7 +253,7 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
             <p className="mt-4 leading-relaxed text-zinc-700 dark:text-zinc-300">
             {/* Hi, I’m Shivam — a Ph.D. candidate at Tufts University. I build robots and AI that learn, adapt, and thrive in open worlds */}
             I am a Ph.D. candidate in Computer Science at Tufts University, specializing in robotics and artificial intelligence. My research focuses on neuro-symbolic AI and reinforcement learning for open-world robotics.
-            I envision a future where autonomous robots handle the unexpected and can learn, adapt, and improve by observing our daily lives. Not just tools, but lifelong collaborators in our homes and workplaces.
+            I envision a future where autonomous robots handle the unexpected and can efficiently learn, adapt, and improve by observing our daily lives. Not just tools, but lifelong collaborators in our homes and workplaces.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-2">
@@ -308,7 +309,7 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                       <Badge variant="secondary" className="text-xs">2020-Present</Badge>
                     </div>
                     <div className="text-zinc-600 dark:text-zinc-400">Tufts University</div>
-                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Advisors: Dr. Jivko Sinapov & Dr. Matthias Scheutz</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Advisors: Prof. Jivko Sinapov & Prof. Matthias Scheutz</div>
                     <div className="text-xs text-zinc-500 dark:text-zinc-400">Research: Neuro-symbolic AI, RL & Robotics</div>
                   </div>
                   
@@ -321,7 +322,7 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                       <Badge variant="secondary" className="text-xs">2015-2017</Badge>
                     </div>
                     <div className="text-zinc-600 dark:text-zinc-400">Washington State University</div>
-                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Advisors: Dr. Matthew E. Taylor</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Advisors: Prof. Matthew E. Taylor</div>
                     <div className="text-xs text-zinc-500 dark:text-zinc-400">Research: Computer Vision, Robotics</div>
                   </div>
                   
