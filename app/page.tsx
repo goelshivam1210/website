@@ -167,7 +167,7 @@ const NEWS = [
 ];
 
 const TAGS = {
-  primary: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-200",
+  primary: "bg-[#E5E1EE] text-zinc-900 dark:bg-[#E5E1EE]/80 dark:text-zinc-900",
   neutral: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-200",
 };
 
@@ -182,7 +182,7 @@ function NavItem({ href, children }: { href: string; children: React.ReactNode }
 function Header({ dark, setDark, mounted }: { dark: boolean; setDark: (v: boolean) => void; mounted: boolean }) {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-zinc-950/60 border-b dark:border-zinc-800">
+    <header className="sticky top-0 z-50 bg-[#E0E1E9] dark:bg-[#2A3D42] border-b dark:border-zinc-700/50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="font-semibold tracking-tight text-lg" />
@@ -264,6 +264,9 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
               <a href={PROFILE.cv}><FileText className="mr-2 h-4 w-4"/>CV</a>
             </Button>
             <Button variant="ghost" asChild>
+              <a href={PROFILE.scholar} target="_blank" rel="noopener noreferrer"><GraduationCap className="mr-2 h-4 w-4"/>Google Scholar</a>
+            </Button>
+            <Button variant="ghost" asChild>
               <a href={PROFILE.github}><Github className="mr-2 h-4 w-4"/>GitHub</a>
             </Button>
             <Button variant="ghost" asChild>
@@ -332,7 +335,7 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                       variant="ghost" 
                       size="sm" 
                       onClick={() => setEducationExpanded(false)}
-                      className="w-full justify-between p-0 h-auto text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                      className="w-full justify-between p-0 h-auto text-[#E5E1EE] dark:text-[#E5E1EE] hover:text-[#E5E1EE]/80 dark:hover:text-[#E5E1EE]/80"
                     >
                       <span>Show less</span>
                       <ChevronDown className="h-4 w-4 rotate-180" />
@@ -439,7 +442,7 @@ function Publications() {
       </div>
       <div className="space-y-3">
         {visible.map((p, i) => (
-          <Card key={`${p.title}-${i}`} className="border-l-4 border-l-blue-500">
+          <Card key={`${p.title}-${i}`} className="border-l-4 border-l-[#E5E1EE] dark:border-l-[#E5E1EE]/70">
             <CardHeader className="pb-2">
               <div className="text-xs text-zinc-500 dark:text-zinc-400">{p.year} · {p.venue}</div>
               <CardTitle className="text-base leading-snug">{p.title}</CardTitle>
@@ -649,7 +652,7 @@ export default function AcademicSite() {
   }, []);
   return (
     <div>
-      <div className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+      <div className="min-h-screen bg-[#FAFFFD] text-zinc-900 dark:bg-[#1A2B2F] dark:text-zinc-100">
         <Header dark={dark} setDark={setDark} mounted={mounted} />
         <main>
           <Hero educationExpanded={educationExpanded} setEducationExpanded={setEducationExpanded} />

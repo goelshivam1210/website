@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           } catch (_) {}
         `}</Script>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#FAFFFD] text-zinc-900 dark:bg-[#1A2B2F] dark:text-zinc-100`}>{children}</body>
     </html>
   );
 }
