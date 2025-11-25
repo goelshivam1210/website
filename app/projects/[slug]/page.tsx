@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import PageWrapper from "@/components/PageWrapper";
 
 const DATA: Record<string, {
   title: string;
@@ -150,7 +152,14 @@ export default async function ProjectPage(
   if (!p) return notFound();
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-10">
+    <PageWrapper>
+      <section className="max-w-6xl mx-auto px-4 py-10">
+      {/* Back to Projects - Top */}
+      <Link href="/#projects" className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mb-6 transition-colors">
+        <ArrowLeft className="h-4 w-4" />
+        <span>Back to Projects</span>
+      </Link>
+      
       <h1 className="text-2xl font-semibold tracking-tight">{p.title}</h1>
       <p className="text-sm text-zinc-600 dark:text-zinc-300 mt-1">{p.blurb}</p>
 
@@ -263,6 +272,13 @@ export default async function ProjectPage(
           ))}
         </div>
       ) : null}
-    </section>
+      
+      {/* Back to Projects - Bottom */}
+      <Link href="/#projects" className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 mt-10 transition-colors">
+        <ArrowLeft className="h-4 w-4" />
+        <span>Back to Projects</span>
+      </Link>
+      </section>
+    </PageWrapper>
   );
 }
