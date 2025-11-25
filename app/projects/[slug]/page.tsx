@@ -55,7 +55,9 @@ const DATA: Record<string, {
       "Cognitive-architecture",
     ],
     media: [{ type:"img", src:"/ns-hero.jpg", alt:"Neurosymbolic"}],
-    videos: [],
+    videos: [
+      { src: "https://www.youtube.com/embed/y8ssHjXDikU", title: "Neurosymbolic Open-world Novelty Handling" },
+    ],
       people: [{ name: "Shivam Goel" }, { name: "Yash Shukla" }, { name: "Panagiotis Lymperpolous" }, { name: "Pierrick Lorang" }, { name: "Ravenna Thielstorm" }, { name: "Vasanth Sarathy" }],
     pubs: [
       {
