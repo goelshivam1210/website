@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Menu, Moon, SunMedium, Mail, MapPin, Github, Linkedin, FileText, GraduationCap, FlaskConical, BookOpen, Cpu, Newspaper, LibraryBig, ArrowRight, Link as LinkIcon, ChevronDown, School } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -237,9 +236,9 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
               priority
             />
             <div>
-              <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="text-3xl md:text-4xl font-semibold tracking-tight">
+              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
                 {PROFILE.name}
-              </motion.h1>
+              </h1>
               <p className="text-zinc-600 dark:text-zinc-300 mt-1">{PROFILE.title}</p>
             </div>
           </div>
@@ -352,13 +351,74 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
 }
 
 function Research() {
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+
   const areas = [
-    { t: "Open-World Robotics", d: "Agents that handle novelty, uncertainty, and unstructured settings." },
-    { t: "Force-Space Policies", d: "Object-centric control via contact forces; transfers across robots." },
-    { t: "Articulated Objects", d: "Learning prismatic and revolute skills with sustained contact." },
-    { t: "Neuro-Symbolic RL", d: "Planning-informed exploration, safety checks, and recovery." },
-    { t: "Sim→Real & Transfer", d: "From simulation to Spot/UR5/Panda/Kinova with minimal retraining." },
-    { t: "Safety & Evaluation", d: "Failure recovery, novelty detection, and standardized benchmarks." },
+    { 
+      t: "Open-World Robotics", 
+      d: "LoCoBot learning for handling novelty in open-world environments.",
+      expanded: {
+        details: "Developing learning frameworks for LoCoBot robots to operate in open-world environments with novelty detection, adaptation, and recovery mechanisms.",
+        links: [
+          { label: "GitHub", href: "https://github.com/goelshivam1210/locobot_learning/tree/real_locobot" },
+        ]
+      }
+    },
+    { 
+      t: "Neurosymbolic Architectures", 
+      d: "Hybrid reasoning systems combining symbolic planning with neural learning.",
+      expanded: {
+        details: "Building neurosymbolic cognitive architectures that integrate symbolic reasoning with reinforcement learning for goal-conditioned continual learning, novelty detection, and recovery in open-world settings.",
+        links: [
+          { label: "Project Page", href: "/projects/neurosymbolic-open-world" },
+          { label: "Paper", href: "/neurosymbolic-paper.pdf" },
+        ]
+      }
+    },
+    { 
+      t: "Testbeds for Open World Learning", 
+      d: "NovelGym and evaluation frameworks for open-world agents.",
+      expanded: {
+        details: "Creating flexible ecosystems and testbeds like NovelGym for evaluating hybrid planning and learning agents in open-world scenarios with standardized benchmarks.",
+        links: [
+          { label: "Project Page", href: "/projects/open-world-benchmarks" },
+          { label: "NovelGym Paper", href: "https://arxiv.org/pdf/2401.03546" },
+        ]
+      }
+    },
+    { 
+      t: "Force-based Object-centric RL", 
+      d: "Reinforcement learning for articulated object manipulation using force-space policies.",
+      expanded: {
+        details: "FLEX framework for learning robot-agnostic force-based manipulation skills for articulated objects. Uses object-centric control via contact forces and transfers across different robot platforms (Spot, UR5, Panda, Kinova).",
+        links: [
+          { label: "FLEX Project", href: "/projects/force-space" },
+          { label: "Paper", href: "https://arxiv.org/abs/2503.13418" },
+          { label: "Code", href: "https://github.com/tufts-ai-robotics-group/FLEX" },
+        ]
+      }
+    },
+    { 
+      t: "Sim2Real Transfer", 
+      d: "Transferring policies from simulation to real robots with minimal retraining.",
+      expanded: {
+        details: "Developing methods to effectively transfer manipulation policies from simulation to real robots including Spot, UR5, Panda, and Kinova with minimal retraining and domain adaptation. This includes work on FLEX framework for force-space policies and behavior cloning approaches.",
+        links: [
+          { label: "FLEX Project", href: "/projects/force-space" },
+          { label: "Behavior Cloning Paper", href: "https://arxiv.org/pdf/2310.08836" },
+        ]
+      }
+    },
+    { 
+      t: "World Models in Robotics", 
+      d: "Learning predictive models of the world for improved robot decision-making.",
+      expanded: {
+        details: "Training world models using agent-centric human demonstrations to improve robot decision-making, planning, and interaction in dynamic environments.",
+        links: [
+          { label: "Paper", href: "https://aabl.cs.tufts.edu/papers/rlc2024_james.pdf" },
+        ]
+      }
+    },
   ];
 
   const methods = ["RL (PPO/TD3)", "Force-space control", "PDDL Planning", "ROS", "Spot SDK"];
@@ -378,12 +438,49 @@ function Research() {
       </p>
 
       <div className="mt-4 grid md:grid-cols-3 gap-3">
-        {areas.map(x => (
-          <Card key={x.t} className="h-full">
-            <CardHeader><CardTitle className="text-sm">{x.t}</CardTitle></CardHeader>
-            <CardContent className="text-sm text-zinc-700 dark:text-zinc-300">{x.d}</CardContent>
-          </Card>
-        ))}
+        {areas.map((x, index) => {
+          const isExpanded = expandedCard === x.t;
+          const isOtherExpanded = expandedCard !== null && expandedCard !== x.t;
+          
+          return (
+            <Card 
+              key={x.t} 
+              className={`h-full transition-all duration-300 cursor-pointer ${
+                isExpanded 
+                  ? 'ring-2 ring-[#E5E1EE] dark:ring-[#E5E1EE]/30 scale-150 shadow-2xl z-50' 
+                  : isOtherExpanded
+                  ? 'opacity-40 blur-sm'
+                  : ''
+              }`}
+              onMouseEnter={() => setExpandedCard(x.t)}
+              onMouseLeave={() => setExpandedCard(null)}
+            >
+              <CardHeader>
+                <CardTitle className="text-sm">{x.t}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-zinc-700 dark:text-zinc-300">
+                <p className={isExpanded ? 'mb-3' : ''}>{x.d}</p>
+                
+                {isExpanded && x.expanded && (
+                  <div className="mt-3 space-y-3 animate-in fade-in duration-300">
+                    <p className="text-xs leading-relaxed">{x.expanded.details}</p>
+                    {x.expanded.links && x.expanded.links.length > 0 && (
+                      <div className="flex flex-wrap gap-2 pt-2 border-t border-zinc-200 dark:border-zinc-700">
+                        {x.expanded.links.map((link, idx) => (
+                          <Button key={idx} asChild variant="secondary" size="sm">
+                            <Link href={link.href}>
+                              {link.label}
+                            </Link>
+                          </Button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
 
       <div className="mt-4 grid md:grid-cols-2 gap-3">

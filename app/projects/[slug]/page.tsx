@@ -43,7 +43,9 @@ const DATA: Record<string, {
         ],
       },
     ],
-    links: []
+    links: [
+      { label: "Code", href: "https://github.com/tufts-ai-robotics-group/FLEX" },
+    ]
   },
   "neurosymbolic-open-world": {
     title: "Neurosymbolic Agents for Open-world Novelty Handling",
@@ -65,7 +67,7 @@ const DATA: Record<string, {
         year: 2024,
         venue: "AI Journal",
         links: [
-          { label: "PDF", href: "https://hrilab.tufts.edu/publications/goeletal24aij.pdf" },
+          { label: "PDF", href: "/neurosymbolic-paper.pdf" },
           { label: "DOI", href: "https://www.sciencedirect.com/science/article/pii/S000437022400047X?casa_token=YPjoDi2mJYMAAAAA:4ylWR_raJTP91XDu8Lqgx0ysoLPI_Nfa_9_2VUI5zgCZb76vh9Oe1nS_MEhhEfCSGgc6jqhG" }
         ],
       },
@@ -142,7 +144,9 @@ const DATA: Record<string, {
         ],
       }
     ],
-    links: []
+    links: [
+      { label: "Code", href: "https://github.com/tufts-ai-robotics-group/NovelGym" },
+    ]
   },
 };
 
