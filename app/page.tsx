@@ -311,7 +311,16 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                       <Badge variant="secondary" className="text-xs">2020-Present</Badge>
                     </div>
                     <div className="text-zinc-600 dark:text-zinc-400">Tufts University</div>
-                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Advisors: Prof. Jivko Sinapov & Prof. Matthias Scheutz</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">
+                      Advisors:{" "}
+                      <a href="https://scholar.google.com/citations?user=-mHoWKEAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">
+                        Prof. Jivko Sinapov
+                      </a>
+                      {" & "}
+                      <a href="https://scholar.google.com/citations?user=5yT3GScAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">
+                        Prof. Matthias Scheutz
+                      </a>
+                    </div>
                     <div className="text-xs text-zinc-500 dark:text-zinc-400">Research: Neuro-symbolic AI, RL & Robotics</div>
                   </div>
                   
@@ -324,7 +333,12 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                       <Badge variant="secondary" className="text-xs">2015-2017</Badge>
                     </div>
                     <div className="text-zinc-600 dark:text-zinc-400">Washington State University</div>
-                    <div className="text-xs text-zinc-500 dark:text-zinc-400">Advisors: Prof. Matthew E. Taylor</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400">
+                      Advisors:{" "}
+                      <a href="https://scholar.google.com/citations?user=edQgLXcAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">
+                        Prof. Matthew E. Taylor
+                      </a>
+                    </div>
                     <div className="text-xs text-zinc-500 dark:text-zinc-400">Research: Computer Vision, Robotics</div>
                   </div>
                   
@@ -356,9 +370,9 @@ function Research() {
   const areas = [
     { 
       t: "Open-World Robotics", 
-      d: "LoCoBot learning for handling novelty in open-world environments.",
+      d: "learning for handling novelty in open-world environments.",
       expanded: {
-        details: "Developing learning frameworks for LoCoBot robots to operate in open-world environments with novelty detection, adaptation, and recovery mechanisms.",
+        details: "Developing learning frameworks and tested on Locobot robot to operate in open-world environments with novelty detection, adaptation, and recovery mechanisms.",
         links: [
           { label: "GitHub", href: "https://github.com/goelshivam1210/locobot_learning/tree/real_locobot" },
         ]
@@ -368,7 +382,7 @@ function Research() {
       t: "Neurosymbolic Architectures", 
       d: "Hybrid reasoning systems combining symbolic planning with neural learning.",
       expanded: {
-        details: "Building neurosymbolic cognitive architectures that integrate symbolic reasoning with reinforcement learning for goal-conditioned continual learning, novelty detection, and recovery in open-world settings.",
+        details: "Building neurosymbolic cognitive architectures that integrate symbolic reasoning with reinforcement learning and goal-conditioned continual learning novelty detection, and recovery in open-world settings.",
         links: [
           { label: "Project Page", href: "/projects/neurosymbolic-open-world" },
           { label: "Paper", href: "/neurosymbolic-paper.pdf" },
@@ -379,10 +393,22 @@ function Research() {
       t: "Testbeds for Open World Learning", 
       d: "NovelGym and evaluation frameworks for open-world agents.",
       expanded: {
-        details: "Creating flexible ecosystems and testbeds like NovelGym for evaluating hybrid planning and learning agents in open-world scenarios with standardized benchmarks.",
+        details: (
+          <>
+            Creating flexible ecosystems and testbeds like{" "}
+            <a href="https://clarech712.github.io/ng-website/" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">
+              NovelGym
+            </a>{" "}
+            and{" "}
+            <a href="https://mulip.cs.tufts.edu/papers/ALA2021_paper_61.pdf" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">
+              Novelgridworlds
+            </a>{" "}
+            for evaluating hybrid planning and learning agents in open-world scenarios with standardized benchmarks.
+          </>
+        ),
         links: [
           { label: "Project Page", href: "/projects/open-world-benchmarks" },
-          { label: "NovelGym Paper", href: "https://arxiv.org/pdf/2401.03546" },
+          { label: "NovelGym Paper", href: "https://arxiv.org/pdf/2401.03546" }
         ]
       }
     },
@@ -392,7 +418,7 @@ function Research() {
       expanded: {
         details: "FLEX framework for learning robot-agnostic force-based manipulation skills for articulated objects. Uses object-centric control via contact forces and transfers across different robot platforms (Spot, UR5, Panda, Kinova).",
         links: [
-          { label: "FLEX Project", href: "/projects/force-space" },
+          { label: "Project page", href: "/projects/force-space" },
           { label: "Paper", href: "https://arxiv.org/abs/2503.13418" },
           { label: "Code", href: "https://github.com/tufts-ai-robotics-group/FLEX" },
         ]
@@ -445,9 +471,9 @@ function Research() {
           return (
             <Card 
               key={x.t} 
-              className={`h-full transition-all duration-300 cursor-pointer ${
+              className={`h-full transition-all duration-500 ease-in-out cursor-pointer ${
                 isExpanded 
-                  ? 'ring-2 ring-[#E5E1EE] dark:ring-[#E5E1EE]/30 scale-150 shadow-2xl z-50' 
+                  ? 'ring-2 ring-[#E5E1EE] dark:ring-[#E5E1EE]/30 scale-110 shadow-2xl z-50' 
                   : isOtherExpanded
                   ? 'opacity-40 blur-sm'
                   : ''
@@ -462,8 +488,8 @@ function Research() {
                 <p className={isExpanded ? 'mb-3' : ''}>{x.d}</p>
                 
                 {isExpanded && x.expanded && (
-                  <div className="mt-3 space-y-3 animate-in fade-in duration-300">
-                    <p className="text-xs leading-relaxed">{x.expanded.details}</p>
+                  <div className="mt-3 space-y-3 animate-in fade-in duration-500">
+                    <div className="text-xs leading-relaxed">{x.expanded.details}</div>
                     {x.expanded.links && x.expanded.links.length > 0 && (
                       <div className="flex flex-wrap gap-2 pt-2 border-t border-zinc-200 dark:border-zinc-700">
                         {x.expanded.links.map((link, idx) => (
@@ -478,7 +504,7 @@ function Research() {
                   </div>
                 )}
               </CardContent>
-            </Card>
+          </Card>
           );
         })}
       </div>
