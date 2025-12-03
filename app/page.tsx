@@ -805,7 +805,7 @@ export default function AcademicSite() {
           <Contact />
         </main>
         <footer className="py-10 text-center text-xs text-zinc-500">
-          © {new Date().getFullYear()} {PROFILE.name}. Last updated Aug 15, 2025.
+          © {new Date().getFullYear()} {PROFILE.name}. Last updated Dec 03, 2025.
         </footer>
       </div>
       <style>{`
