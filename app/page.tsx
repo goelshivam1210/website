@@ -613,6 +613,8 @@ function Publications() {
 }
 
 function Projects() {
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+
   return (
     <section id="projects" className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex items-center gap-2 mb-3">
@@ -620,40 +622,56 @@ function Projects() {
         <h2 className="text-xl font-semibold tracking-tight">Projects</h2>
       </div>
       <div className="grid md:grid-cols-3 gap-3">
-        {PROJECTS.map((prj) => (
-          <Card key={prj.slug} className="overflow-hidden flex flex-col h-full">
-            {/* Title on top */}
-            <CardHeader className="pb-2 min-h-[60px] flex items-center justify-center">
-              <CardTitle className="text-base text-center">{prj.title}</CardTitle>
-            </CardHeader>
+        {PROJECTS.map((prj) => {
+          const isExpanded = expandedProject === prj.slug;
+          const isOtherExpanded = expandedProject !== null && expandedProject !== prj.slug;
 
-            {/* Uniform image in the middle */}
-            <div className="w-full bg-zinc-100 dark:bg-zinc-800">
-              <Image
-                src={prj.img}
-                alt={prj.title}
-                width={1200}
-                height={675}
-                className="w-full h-40 object-cover"
-                priority={false}
-              />
-            </div>
+          return (
+            <Card 
+              key={prj.slug} 
+              className={`overflow-hidden flex flex-col h-full transition-all duration-500 ease-in-out cursor-pointer ${
+                isExpanded 
+                  ? 'ring-2 ring-[#E5E1EE] dark:ring-[#E5E1EE]/30 scale-110 shadow-2xl z-50' 
+                  : isOtherExpanded
+                  ? 'opacity-40 blur-sm'
+                  : ''
+              }`}
+              onMouseEnter={() => setExpandedProject(prj.slug)}
+              onMouseLeave={() => setExpandedProject(null)}
+            >
+              {/* Title on top */}
+              <CardHeader className="pb-2 min-h-[60px] flex items-center justify-center">
+                <CardTitle className="text-base text-center">{prj.title}</CardTitle>
+              </CardHeader>
 
-            {/* Description + link */}
-            <CardContent className="text-sm text-zinc-700 dark:text-zinc-300 flex flex-col h-full">
-              <p className="mt-3">{prj.blurb}</p>
-              <div className="mt-auto pt-3">
-                <Link
-                  href={`/projects/${prj.slug}`}
-                  className="underline"
-                  aria-label={`Read more about ${prj.title}`}
-                >
-                  Click to know more →
-                </Link>
+              {/* Uniform image in the middle */}
+              <div className="w-full bg-zinc-100 dark:bg-zinc-800">
+                <Image
+                  src={prj.img}
+                  alt={prj.title}
+                  width={1200}
+                  height={675}
+                  className="w-full h-40 object-cover"
+                  priority={false}
+                />
               </div>
-            </CardContent>
-          </Card>
-        ))}
+
+              {/* Description + link */}
+              <CardContent className="text-sm text-zinc-700 dark:text-zinc-300 flex flex-col h-full">
+                <p className="mt-3">{prj.blurb}</p>
+                <div className="mt-auto pt-3">
+                  <Link
+                    href={`/projects/${prj.slug}`}
+                    className="underline"
+                    aria-label={`Read more about ${prj.title}`}
+                  >
+                    Click to know more →
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </section>
   );
