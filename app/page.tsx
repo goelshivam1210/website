@@ -6,15 +6,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
 
 // ---- Quick config (edit these) ----
 const PROFILE = {
   name: "Shivam Goel",
-  title: "Ph.D. Candidate · Neuro-symbolic AI, RL & Robotics",
-  location: "Boston, MA · Tufts University",
+  title: "Postdoctoral Scholar, University of Alberta",
+  location: "Edmonton, AB · University of Alberta & Amii",
+  office: "7-250C University Commons (UComm)",
+  address: "Edmonton, Alberta, Canada T6G 2E8",
   email: "goelshivam1210@gmail.com",
   scholar: "https://scholar.google.com/citations?user=aKKyLbMAAAAJ",
   github: "https://github.com/goelshivam1210",
@@ -121,7 +122,7 @@ const PUBS = [
   {
     year: 2019,
     title: "Teaching Robots to Interact with Humans in a Smart Environment.",
-    authors: "Shivam Goel, Matthrew E. Taylor, Diane J. Cook.",
+    authors: "Shivam Goel, Matthew E. Taylor, Diane J. Cook.",
     venue: "IJCAI-2019, Extended Abstract",
     links: [ { label: "PDF", href: "https://www.ijcai.org/Proceedings/2019/0906.pdf" } ],
     tags: ["RL", "smart home", "human-robot interaction"],
@@ -156,7 +157,8 @@ const TEACHING = [
 ];
 
 const NEWS = [
-  { date: "Sep 2025", text: "I am on the Job market. Expected graduation in May 2026." },
+  { date: "Aug 2026", text: "Graduated from Tufts University." },
+  { date: "May 2026", text: "Defended my Ph.D. dissertation." },
   { date: "May 2025", text: "FLEX at ICRA 2025 (Atlanta, GA)." },
   { date: "Jan 2025", text: "AAAI 2025: Oral on neurosymbolic cognitive architecture (Open World AI)." },
   { date: "Dec 2024", text: "Joined ONR grant on force-based learning & rapid novelty adaptation using Spot." },
@@ -249,11 +251,28 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
             ))}
           </div>
 
-            <p className="mt-4 leading-relaxed text-zinc-700 dark:text-zinc-300">
-            {/* Hi, I’m Shivam — a Ph.D. candidate at Tufts University. I build robots and AI that learn, adapt, and thrive in open worlds */}
-            I am a Ph.D. candidate in Computer Science at Tufts University, specializing in robotics and artificial intelligence. My research focuses on neuro-symbolic AI and reinforcement learning for open-world robotics.
-            I envision a future where autonomous robots handle the unexpected and can efficiently learn, adapt, and improve by observing our daily lives. Not just tools, but lifelong collaborators in our homes and workplaces.
-          </p>
+            <div className="mt-4 space-y-3 leading-relaxed text-zinc-700 dark:text-zinc-300">
+              <p>
+                I am an incoming postdoctoral scholar at the{" "}
+                <a href="https://www.ualberta.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">University of Alberta</a>
+                {" "}and{" "}
+                <a href="https://www.amii.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Amii</a>
+                , working with{" "}
+                <a href="https://drmatttaylor.net" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Matt Taylor</a>
+                {" "}in the{" "}
+                <a href="https://irll.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">IRL Lab</a>
+                . I completed my Ph.D. in Computer Science at{" "}
+                <a href="https://www.tufts.edu" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Tufts University</a>
+                , where I worked with{" "}
+                <a href="https://www.cs.tufts.edu/~jsinapov" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Jivko Sinapov</a>
+                {" "}and{" "}
+                <a href="https://engineering.tufts.edu/cs/people/faculty/matthias-scheutz" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Matthias Scheutz</a>
+                .
+              </p>
+              <p>
+                My current research interests are in open-world robotics, human–robot interaction, and reinforcement learning for robotics. My long-term goal is to build autonomous robots that can handle the unexpected and efficiently learn, adapt, and improve by observing our daily lives — not just tools, but lifelong collaborators in our homes and workplaces.
+              </p>
+            </div>
 
           <div className="mt-5 flex flex-wrap gap-2">
             <Button asChild>
@@ -275,10 +294,9 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
         </div>
         <Card className="overflow-hidden">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2"><GraduationCap className="h-5 w-5"/> Education</CardTitle>
+            <CardTitle className="flex items-center gap-2"><Mail className="h-5 w-5"/> Contact</CardTitle>
           </CardHeader>
           <CardContent className="text-sm">
-            {/* Collapsed state - always visible */}
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
                 <MapPin className="h-4 w-4"/> {PROFILE.location}
@@ -288,7 +306,6 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
               </div>
             </div>
             
-            {/* Expandable education details */}
             <div className="mt-4">
               {!educationExpanded && (
                 <Button 
@@ -297,18 +314,21 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                   onClick={() => setEducationExpanded(true)}
                   className="w-full justify-between p-0 h-auto text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
                 >
-                  <span>Show more</span>
+                  <span>Education</span>
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               )}
               
               {educationExpanded && (
                 <div className="mt-3 space-y-3 pt-3 border-t">
-                  {/* Current PhD */}
+                  <div className="flex items-center gap-2 font-medium text-zinc-800 dark:text-zinc-200">
+                    <GraduationCap className="h-4 w-4"/> Education
+                  </div>
+
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
                       <div className="font-medium">Ph.D. Computer Science</div>
-                      <Badge variant="secondary" className="text-xs">2020-Present</Badge>
+                      <Badge variant="secondary" className="text-xs">2026</Badge>
                     </div>
                     <div className="text-zinc-600 dark:text-zinc-400">Tufts University</div>
                     <div className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -326,11 +346,10 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                   
                   <Separator />
                   
-                  {/* MS */}
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
                       <div className="font-medium">M.S. Computer Science</div>
-                      <Badge variant="secondary" className="text-xs">2015-2017</Badge>
+                      <Badge variant="secondary" className="text-xs">2017</Badge>
                     </div>
                     <div className="text-zinc-600 dark:text-zinc-400">Washington State University</div>
                     <div className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -342,7 +361,6 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                     <div className="text-xs text-zinc-500 dark:text-zinc-400">Research: Computer Vision, Robotics</div>
                   </div>
                   
-                  {/* Show less button at the bottom */}
                   <div className="pt-2">
                     <Button 
                       variant="ghost" 
@@ -753,11 +771,11 @@ function Contact() {
             <div className="space-y-2">
               <div className="flex items-center gap-2"><Mail className="h-4 w-4"/> <a className="underline" href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a></div>
               <div className="flex items-center gap-2"><MapPin className="h-4 w-4"/> {PROFILE.location}</div>
-              <div className="flex items-center gap-2">
-                <School className="h-4 w-4"/> 
+              <div className="flex items-start gap-2">
+                <School className="h-4 w-4 mt-0.5 shrink-0"/>
                 <div className="text-sm">
-                  <div> Joyce Cummings Center (JCC) </div>
-                  <div>177 College Ave, Room 483-06</div>
+                  <div>{PROFILE.office}</div>
+                  <div>{PROFILE.address}</div>
                 </div>
               </div>
               <div className="flex items-center gap-2"><Github className="h-4 w-4"/> <a className="underline" href={PROFILE.github}>GitHub</a></div>
@@ -807,7 +825,7 @@ export default function AcademicSite() {
           <Contact />
         </main>
         <footer className="py-10 text-center text-xs text-zinc-500">
-          © {new Date().getFullYear()} {PROFILE.name}. Last updated Dec 03, 2025.
+          © {new Date().getFullYear()} {PROFILE.name}. Last updated Nov 01, 2026.
         </footer>
       </div>
       <style>{`
