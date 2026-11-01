@@ -161,7 +161,7 @@ const DISSERTATION_URL = "https://www.proquest.com/openview/58923caf9b69fdec8403
 const NEWS: { date: string; text: ReactNode }[] = [
   { date: "Fall 2026", text: "Joined the University of Alberta and Amii as a Postdoctoral Scholar with Matt Taylor in the IRL Lab." },
   { date: "Aug 2026", text: "Graduated from Tufts University." },
-  { date: "May 2026", text: <>Defended my Ph.D. dissertation, <a href={DISSERTATION_URL} target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Structured Abstred for Learning and Adaptation in Open-World Environments</a>.</> },
+  { date: "May 2026", text: <>Defended my Ph.D. dissertation, <a href={DISSERTATION_URL} target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Structured Abstractions for Learning and Adaptation in Open-World Environments</a>.</> },
   { date: "May 2025", text: "FLEX at ICRA 2025 (Atlanta, GA)." },
   { date: "Jan 2025", text: "AAAI 2025: Oral on neurosymbolic cognitive architecture (Open World AI)." },
   { date: "Dec 2024", text: "Joined ONR grant on force-based learning & rapid novelty adaptation using Spot." },
@@ -592,8 +592,8 @@ function News() {
         <h2 className="text-xl font-semibold tracking-tight">News</h2>
       </div>
       <div className="space-y-3">
-        {visible.map((n) => (
-          <Card key={n.text}>
+        {visible.map((n, i) => (
+          <Card key={`${n.date}-${i}`}>
             <CardContent className="pt-6 text-sm flex items-center justify-between gap-3">
               <span className="text-zinc-500 dark:text-zinc-400 shrink-0">{n.date}</span>
               <span className="text-right sm:text-left sm:ml-3 flex-1">{n.text}</span>
