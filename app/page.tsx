@@ -22,7 +22,7 @@ const PROFILE = {
   linkedin: "https://www.linkedin.com/in/goelshivam12/",
   twitter: null,
   cv: "/cv.pdf",
-  interests: ["Force-based manipulation", "Robot-agnostic policies", "Neuro-symbolic RL", "Open-world learning", "Cognitive Architectures"],
+  interests: ["Open-world robotics", "Human–robot interaction", "RL for robotics", "Neuro-symbolic AI", "Force-based manipulation"],
 };
 
 const PUBS = [
@@ -157,6 +157,7 @@ const TEACHING = [
 ];
 
 const NEWS = [
+  { date: "Fall 2026", text: "Joined the University of Alberta and Amii as a Postdoctoral Scholar with Matt Taylor in the IRL Lab." },
   { date: "Aug 2026", text: "Graduated from Tufts University." },
   { date: "May 2026", text: "Defended my Ph.D. dissertation." },
   { date: "May 2025", text: "FLEX at ICRA 2025 (Atlanta, GA)." },
@@ -186,14 +187,14 @@ function Header({ dark, setDark, mounted }: { dark: boolean; setDark: (v: boolea
     <header className="sticky top-0 z-50 bg-[#E0E1E9] dark:bg-[#2A3D42] border-b dark:border-zinc-700/50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="font-semibold tracking-tight text-lg" />
+          <a href="#top" className="font-semibold tracking-tight text-lg">{PROFILE.name}</a>
           <nav className="hidden md:flex items-center gap-1 text-sm">
-            <NavItem href="#top">Home</NavItem>
+            <NavItem href="#top">About</NavItem>
+            <NavItem href="#news">News</NavItem>
             <NavItem href="#research">Research</NavItem>
             <NavItem href="#publications">Publications</NavItem>
-            <NavItem href="/#projects">Projects</NavItem>
+            <NavItem href="#projects">Projects</NavItem>
             <NavItem href="#teaching">Teaching</NavItem>
-            <NavItem href="#news">News</NavItem>
             <NavItem href="#contact">Contact</NavItem>
           </nav>
           <div className="flex items-center gap-2">
@@ -209,12 +210,12 @@ function Header({ dark, setDark, mounted }: { dark: boolean; setDark: (v: boolea
         </div>
         {open && (
           <div className="md:hidden pb-3 flex flex-col gap-1 text-sm">
-            <NavItem href="#top">Home</NavItem>
+            <NavItem href="#top">About</NavItem>
+            <NavItem href="#news">News</NavItem>
             <NavItem href="#research">Research</NavItem>
             <NavItem href="#publications">Publications</NavItem>
-            <NavItem href="/#projects">Projects</NavItem>
+            <NavItem href="#projects">Projects</NavItem>
             <NavItem href="#teaching">Teaching</NavItem>
-            <NavItem href="#news">News</NavItem>
             <NavItem href="#contact">Contact</NavItem>
           </div>
         )}
@@ -253,7 +254,7 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
 
             <div className="mt-4 space-y-3 leading-relaxed text-zinc-700 dark:text-zinc-300">
               <p>
-                I am an incoming postdoctoral scholar at the{" "}
+                I am a postdoctoral scholar at the{" "}
                 <a href="https://www.ualberta.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">University of Alberta</a>
                 {" "}and{" "}
                 <a href="https://www.amii.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Amii</a>
@@ -270,7 +271,11 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                 .
               </p>
               <p>
-                My current research interests are in open-world robotics, human–robot interaction, and reinforcement learning for robotics. My long-term goal is to build autonomous robots that can handle the unexpected and efficiently learn, adapt, and improve by observing our daily lives — not just tools, but lifelong collaborators in our homes and workplaces.
+                My research focuses on{" "}
+                <a href="#research" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">open-world robotics</a>,{" "}
+                <a href="#research" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">human–robot interaction</a>, and{" "}
+                <a href="#research" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">reinforcement learning for robotics</a>
+                . My long-term goal is to build autonomous robots that can handle the unexpected and efficiently learn, adapt, and improve by observing our daily lives — not just tools, but lifelong collaborators in our homes and workplaces.
               </p>
             </div>
 
@@ -817,11 +822,11 @@ export default function AcademicSite() {
         <Header dark={dark} setDark={setDark} mounted={mounted} />
         <main>
           <Hero educationExpanded={educationExpanded} setEducationExpanded={setEducationExpanded} />
+          <News />
           <Research />
           <Publications />
           <Projects />
           <Teaching />
-          <News />
           <Contact />
         </main>
         <footer className="py-10 text-center text-xs text-zinc-500">
