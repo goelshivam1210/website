@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { Menu, Moon, SunMedium, Mail, MapPin, Github, Linkedin, FileText, GraduationCap, FlaskConical, BookOpen, Newspaper, LibraryBig, ArrowRight, Link as LinkIcon, ChevronDown, School } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -156,10 +156,12 @@ const TEACHING = [
   { course: "Object Oriented Techniques using C#", role: "TA" },
 ];
 
-const NEWS = [
+const DISSERTATION_URL = "https://www.proquest.com/openview/58923caf9b69fdec8403710154acaefb/1?pq-origsite=gscholar&cbl=18750&diss=y";
+
+const NEWS: { date: string; text: ReactNode }[] = [
   { date: "Fall 2026", text: "Joined the University of Alberta and Amii as a Postdoctoral Scholar with Matt Taylor in the IRL Lab." },
   { date: "Aug 2026", text: "Graduated from Tufts University." },
-  { date: "May 2026", text: "Defended my Ph.D. dissertation." },
+  { date: "May 2026", text: <>Defended my Ph.D. dissertation, <a href={DISSERTATION_URL} target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Structured Abstred for Learning and Adaptation in Open-World Environments</a>.</> },
   { date: "May 2025", text: "FLEX at ICRA 2025 (Atlanta, GA)." },
   { date: "Jan 2025", text: "AAAI 2025: Oral on neurosymbolic cognitive architecture (Open World AI)." },
   { date: "Dec 2024", text: "Joined ONR grant on force-based learning & rapid novelty adaptation using Spot." },
@@ -271,7 +273,9 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                 <a href="https://www.cs.tufts.edu/~jsinapov" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Jivko Sinapov</a>
                 {" "}and{" "}
                 <a href="https://engineering.tufts.edu/cs/people/faculty/matthias-scheutz" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Matthias Scheutz</a>
-                .
+                . My{" "}
+                <a href="https://www.proquest.com/openview/58923caf9b69fdec8403710154acaefb/1?pq-origsite=gscholar&cbl=18750&diss=y" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">dissertation</a>
+                {" "}explored how structured abstractions can help robots to learn and adapt when facing novelty in open-world environments.
               </p>
               <p>
                 <span className="font-medium text-zinc-800 dark:text-zinc-200">Research interests:</span>{" "}
