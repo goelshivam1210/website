@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Menu, Moon, SunMedium, Mail, MapPin, Github, Linkedin, FileText, GraduationCap, FlaskConical, BookOpen, Cpu, Newspaper, LibraryBig, ArrowRight, Link as LinkIcon, ChevronDown, School } from "lucide-react";
+import { Menu, Moon, SunMedium, Mail, MapPin, Github, Linkedin, FileText, GraduationCap, FlaskConical, BookOpen, Newspaper, LibraryBig, ArrowRight, Link as LinkIcon, ChevronDown, School } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -115,7 +115,7 @@ const PUBS = [
     year: 2019,
     title: "Robot-enabled support of daily activities in smart home environments",
     authors: "Garrett Wilson, Christopher Pereyda, Nisha Raghunath, Gabriel de la Cruz, Shivam Goel, Sepehr Nesaei, Bryan Minor, Maureen Schmitter-Edgecombe, Matthew E Taylor, Diane J Cook.",
-    venue: "COgnitive Systems Research, 54(c), September 2019",
+    venue: "Cognitive Systems Research, 54(c), September 2019",
     links: [ { label: "PDF", href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6764768/" } ],
     tags: ["planning", "ROS", "smart home"],
   },
@@ -193,7 +193,6 @@ function Header({ dark, setDark, mounted }: { dark: boolean; setDark: (v: boolea
             <NavItem href="#news">News</NavItem>
             <NavItem href="#research">Research</NavItem>
             <NavItem href="#publications">Publications</NavItem>
-            <NavItem href="#projects">Projects</NavItem>
             <NavItem href="#teaching">Teaching</NavItem>
             <NavItem href="#contact">Contact</NavItem>
           </nav>
@@ -214,7 +213,6 @@ function Header({ dark, setDark, mounted }: { dark: boolean; setDark: (v: boolea
             <NavItem href="#news">News</NavItem>
             <NavItem href="#research">Research</NavItem>
             <NavItem href="#publications">Publications</NavItem>
-            <NavItem href="#projects">Projects</NavItem>
             <NavItem href="#teaching">Teaching</NavItem>
             <NavItem href="#contact">Contact</NavItem>
           </div>
@@ -254,7 +252,7 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
 
             <div className="mt-4 space-y-3 leading-relaxed text-zinc-700 dark:text-zinc-300">
               <p>
-                I am a postdoctoral scholar at the{" "}
+                I am an incoming postdoctoral scholar at the{" "}
                 <a href="https://www.ualberta.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">University of Alberta</a>
                 {" "}and{" "}
                 <a href="https://www.amii.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Amii</a>
@@ -262,20 +260,26 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
                 <a href="https://drmatttaylor.net" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Matt Taylor</a>
                 {" "}in the{" "}
                 <a href="https://irll.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">IRL Lab</a>
-                . I completed my Ph.D. in Computer Science at{" "}
+                . I am also affiliated with{" "}
+                <a href="http://rlai.ualberta.ca/" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">RLAI</a>
+                .
+              </p>
+              <p>
+                I recently completed my Ph.D. in Computer Science at{" "}
                 <a href="https://www.tufts.edu" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Tufts University</a>
-                , where I worked with{" "}
+                {" "}with a focus on AI and Robotics, where I worked with{" "}
                 <a href="https://www.cs.tufts.edu/~jsinapov" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Jivko Sinapov</a>
                 {" "}and{" "}
                 <a href="https://engineering.tufts.edu/cs/people/faculty/matthias-scheutz" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Matthias Scheutz</a>
                 .
               </p>
               <p>
-                My research focuses on{" "}
-                <a href="#research" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">open-world robotics</a>,{" "}
-                <a href="#research" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">human–robot interaction</a>, and{" "}
-                <a href="#research" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">reinforcement learning for robotics</a>
-                . My long-term goal is to build autonomous robots that can handle the unexpected and efficiently learn, adapt, and improve by observing our daily lives — not just tools, but lifelong collaborators in our homes and workplaces.
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">Research interests:</span>{" "}
+                open-world robotics, human–robot interaction, and reinforcement learning for robotics.
+              </p>
+              <p>
+                My long-term goal is to build autonomous robots that can handle the unexpected and efficiently learn, adapt, and improve by observing our daily lives — not just tools, but lifelong collaborators in our homes and workplaces.{" "}
+                <a href="#research" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Know more about my research →</a>
               </p>
             </div>
 
@@ -388,90 +392,7 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
 }
 
 function Research() {
-  const [expandedCard, setExpandedCard] = useState<string | null>(null);
-
-  const areas = [
-    { 
-      t: "Open-World Robotics", 
-      d: "learning for handling novelty in open-world environments.",
-      expanded: {
-        details: "Developing learning frameworks and tested on Locobot robot to operate in open-world environments with novelty detection, adaptation, and recovery mechanisms.",
-        links: [
-          { label: "GitHub", href: "https://github.com/goelshivam1210/locobot_learning/tree/real_locobot" },
-        ]
-      }
-    },
-    { 
-      t: "Neurosymbolic Architectures", 
-      d: "Hybrid reasoning systems combining symbolic planning with neural learning.",
-      expanded: {
-        details: "Building neurosymbolic cognitive architectures that integrate symbolic reasoning with reinforcement learning and goal-conditioned continual learning novelty detection, and recovery in open-world settings.",
-        links: [
-          { label: "Project Page", href: "/projects/neurosymbolic-open-world" },
-          { label: "Paper", href: "/neurosymbolic-paper.pdf" },
-        ]
-      }
-    },
-    { 
-      t: "Testbeds for Open World Learning", 
-      d: "NovelGym and evaluation frameworks for open-world agents.",
-      expanded: {
-        details: (
-          <>
-            Creating flexible ecosystems and testbeds like{" "}
-            <a href="https://clarech712.github.io/ng-website/" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">
-              NovelGym
-            </a>{" "}
-            and{" "}
-            <a href="https://mulip.cs.tufts.edu/papers/ALA2021_paper_61.pdf" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">
-              Novelgridworlds
-            </a>{" "}
-            for evaluating hybrid planning and learning agents in open-world scenarios with standardized benchmarks.
-          </>
-        ),
-        links: [
-          { label: "Project Page", href: "/projects/open-world-benchmarks" },
-          { label: "NovelGym Paper", href: "https://arxiv.org/pdf/2401.03546" }
-        ]
-      }
-    },
-    { 
-      t: "Force-based Object-centric RL", 
-      d: "Reinforcement learning for articulated object manipulation using force-space policies.",
-      expanded: {
-        details: "FLEX framework for learning robot-agnostic force-based manipulation skills for articulated objects. Uses object-centric control via contact forces and transfers across different robot platforms (Spot, UR5, Panda, Kinova).",
-        links: [
-          { label: "Project page", href: "/projects/force-space" },
-          { label: "Paper", href: "https://arxiv.org/abs/2503.13418" },
-          { label: "Code", href: "https://github.com/tufts-ai-robotics-group/FLEX" },
-        ]
-      }
-    },
-    { 
-      t: "Sim2Real Transfer", 
-      d: "Transferring policies from simulation to real robots with minimal retraining.",
-      expanded: {
-        details: "Developing methods to effectively transfer manipulation policies from simulation to real robots including Spot, UR5, Panda, and Kinova with minimal retraining and domain adaptation. This includes work on FLEX framework for force-space policies and behavior cloning approaches.",
-        links: [
-          { label: "FLEX Project", href: "/projects/force-space" },
-          { label: "Behavior Cloning Paper", href: "https://arxiv.org/pdf/2310.08836" },
-        ]
-      }
-    },
-    { 
-      t: "World Models in Robotics", 
-      d: "Learning predictive models of the world for improved robot decision-making.",
-      expanded: {
-        details: "Training world models using agent-centric human demonstrations to improve robot decision-making, planning, and interaction in dynamic environments.",
-        links: [
-          { label: "Paper", href: "https://aabl.cs.tufts.edu/papers/rlc2024_james.pdf" },
-        ]
-      }
-    },
-  ];
-
-  const methods = ["RL (PPO/TD3)", "Force-space control", "PDDL Planning", "ROS", "Spot SDK"];
-  const robots  = ["Spot", "UR5", "Panda", "Kinova", "LoCoBot", "TurtleBot"]; // fixed: no double comma
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
 
   return (
     <section id="research" className="max-w-6xl mx-auto px-4 py-8">
@@ -486,165 +407,8 @@ function Research() {
         By combining <span className="font-medium">learning</span>, <span className="font-medium">planning</span>, and <span className="font-medium">structured object models</span>, I build frameworks and algorithms that unify high-level reasoning with low-level control aiming toward autonomous robots that thrive in dynamic real-world settings.
       </p>
 
-      <div className="mt-4 grid md:grid-cols-3 gap-3">
-        {areas.map((x, index) => {
-          const isExpanded = expandedCard === x.t;
-          const isOtherExpanded = expandedCard !== null && expandedCard !== x.t;
-          
-          return (
-            <Card 
-              key={x.t} 
-              className={`h-full transition-all duration-500 ease-in-out cursor-pointer ${
-                isExpanded 
-                  ? 'ring-2 ring-[#E5E1EE] dark:ring-[#E5E1EE]/30 scale-110 shadow-2xl z-50' 
-                  : isOtherExpanded
-                  ? 'opacity-40 blur-sm'
-                  : ''
-              }`}
-              onMouseEnter={() => setExpandedCard(x.t)}
-              onMouseLeave={() => setExpandedCard(null)}
-            >
-              <CardHeader>
-                <CardTitle className="text-sm">{x.t}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-zinc-700 dark:text-zinc-300">
-                <p className={isExpanded ? 'mb-3' : ''}>{x.d}</p>
-                
-                {isExpanded && x.expanded && (
-                  <div className="mt-3 space-y-3 animate-in fade-in duration-500">
-                    <div className="text-xs leading-relaxed">{x.expanded.details}</div>
-                    {x.expanded.links && x.expanded.links.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pt-2 border-t border-zinc-200 dark:border-zinc-700">
-                        {x.expanded.links.map((link, idx) => (
-                          <Button key={idx} asChild variant="secondary" size="sm">
-                            <Link href={link.href}>
-                              {link.label}
-                            </Link>
-                          </Button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </CardContent>
-          </Card>
-          );
-        })}
-      </div>
-
-      <div className="mt-4 grid md:grid-cols-2 gap-3">
-        <Card>
-          <CardHeader><CardTitle className="text-sm">Methods</CardTitle></CardHeader>
-          <CardContent className="text-xs flex flex-wrap gap-2">
-            {methods.map(m => (
-              <span key={m} className={`px-2 py-1 rounded-full ${TAGS.neutral}`}>{m}</span>
-            ))}
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader><CardTitle className="text-sm">Robots</CardTitle></CardHeader>
-          <CardContent className="text-xs flex flex-wrap gap-2">
-            {robots.map(r => (
-              <span key={r} className={`px-2 py-1 rounded-full ${TAGS.neutral}`}>{r}</span>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
-}
-
-function Publications() {
-  const [expanded, setExpanded] = useState(false);
-  const sorted = [...PUBS].sort((a, b) => b.year - a.year);
-  const SHOW_N = 4; // default visible count
-  const visible = expanded ? sorted : sorted.slice(0, SHOW_N);
-  const remaining = Math.max(0, sorted.length - SHOW_N);
-
-  return (
-    <section id="publications" className="max-w-6xl mx-auto px-4 py-8">
-      <div className="flex items-center gap-2 mb-3">
-        <BookOpen className="h-5 w-5"/>
-        <h2 className="text-xl font-semibold tracking-tight">Publications</h2>
-        <Button variant="ghost" size="sm" asChild>
-          <a href={PROFILE.scholar} className="gap-1"><LinkIcon className="h-4 w-4"/>Google Scholar</a>
-        </Button>
-      </div>
-      <div className="mb-3 text-xs text-zinc-600 dark:text-zinc-400 flex flex-wrap gap-3">
-        <span>Legend:</span>
-        {/* <span>⭐ first-author</span> */}
-        {/* <span>✳ co-first</span> */}
-        {/* <span>🧭 corresponding</span> */}
-        <span>🗣 long talk</span>
-        <span>🎤 oral</span>
-        {/* <span>🏆 best paper</span> */}
-        {/* <span>🎥 video</span> */}
-        {/* <span>💾 code</span> */}
-        {/* <span>🌐 project</span> */}
-        <span>🔁 sim→real</span>
-        <span>🧪 real-robot</span>
-        <span>📦 benchmark</span>
-        <span>🧾 journal</span>
-      </div>
-      <div className="space-y-3">
-        {visible.map((p, i) => (
-          <Card key={`${p.title}-${i}`} className="border-l-4 border-l-[#E5E1EE] dark:border-l-[#E5E1EE]/70">
-            <CardHeader className="pb-2">
-              <div className="text-xs text-zinc-500 dark:text-zinc-400">{p.year} · {p.venue}</div>
-              <CardTitle className="text-base leading-snug">{p.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="pt-0 text-sm">
-              <div className="text-zinc-700 dark:text-zinc-300">{p.authors}</div>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {p.tags?.map((t) => (
-                  <span key={t} className={`px-2 py-0.5 rounded-full text-xs ${TAGS.neutral}`}>{t}</span>
-                ))}
-              </div>
-              {p.icons && p.icons.length > 0 && (
-                <div className="mt-2 flex flex-wrap gap-2 text-sm">
-                  {p.icons.map(ic => (
-                    <span key={ic}>{ic}</span>
-                  ))}
-                </div>
-              )}
-              <div className="mt-3 flex gap-2 flex-wrap">
-                {p.links.map((l) => (
-                  <Button key={l.label} variant="secondary" size="sm" asChild>
-                    <a href={l.href}>{l.label}</a>
-                  </Button>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      {remaining > 0 && (
-        <div className="mt-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setExpanded((v) => !v)}
-            aria-expanded={expanded}
-            aria-controls="pubs-extra"
-          >
-            {expanded ? "Show fewer" : `Show ${remaining} more`}
-          </Button>
-        </div>
-      )}
-    </section>
-  );
-}
-
-function Projects() {
-  const [expandedProject, setExpandedProject] = useState<string | null>(null);
-
-  return (
-    <section id="projects" className="max-w-6xl mx-auto px-4 py-8">
-      <div className="flex items-center gap-2 mb-3">
-        <Cpu className="h-5 w-5"/>
-        <h2 className="text-xl font-semibold tracking-tight">Projects</h2>
-      </div>
-      <div className="grid md:grid-cols-3 gap-3">
+      {/* Projects as the visual entry points into the research — not a second parallel grid of theme cards */}
+      <div id="projects" className="mt-5 grid md:grid-cols-3 gap-3">
         {PROJECTS.map((prj) => {
           const isExpanded = expandedProject === prj.slug;
           const isOtherExpanded = expandedProject !== null && expandedProject !== prj.slug;
@@ -656,23 +420,20 @@ function Projects() {
               className="block"
               aria-label={`Read more about ${prj.title}`}
             >
-              <Card 
+              <Card
                 className={`overflow-hidden flex flex-col h-full transition-all duration-500 ease-in-out cursor-pointer ${
-                  isExpanded 
-                    ? 'ring-2 ring-[#E5E1EE] dark:ring-[#E5E1EE]/30 scale-110 shadow-2xl z-50' 
+                  isExpanded
+                    ? "ring-2 ring-[#E5E1EE] dark:ring-[#E5E1EE]/30 scale-105 shadow-2xl z-50"
                     : isOtherExpanded
-                    ? 'opacity-40 blur-sm'
-                    : ''
+                    ? "opacity-40 blur-sm"
+                    : ""
                 }`}
                 onMouseEnter={() => setExpandedProject(prj.slug)}
                 onMouseLeave={() => setExpandedProject(null)}
               >
-                {/* Title on top */}
-                <CardHeader className="pb-2 min-h-[60px] flex items-center justify-center">
-                  <CardTitle className="text-base text-center">{prj.title}</CardTitle>
+                <CardHeader className="pb-2 min-h-[56px] flex items-center justify-center">
+                  <CardTitle className="text-base text-center leading-snug">{prj.title}</CardTitle>
                 </CardHeader>
-
-                {/* Uniform image in the middle */}
                 <div className="w-full bg-zinc-100 dark:bg-zinc-800">
                   <Image
                     src={prj.img}
@@ -683,14 +444,10 @@ function Projects() {
                     priority={false}
                   />
                 </div>
-
-                {/* Description + link */}
                 <CardContent className="text-sm text-zinc-700 dark:text-zinc-300 flex flex-col h-full">
                   <p className="mt-3">{prj.blurb}</p>
                   <div className="mt-auto pt-3">
-                    <span className="underline">
-                      Click to know more →
-                    </span>
+                    <span className="underline">Learn more →</span>
                   </div>
                 </CardContent>
               </Card>
@@ -698,6 +455,99 @@ function Projects() {
           );
         })}
       </div>
+    </section>
+  );
+}
+
+function Publications() {
+  const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
+  const sorted = [...PUBS].sort((a, b) => b.year - a.year);
+  const SHOW_N = 4;
+  const visible = expanded ? sorted : sorted.slice(0, SHOW_N);
+  const remaining = Math.max(0, sorted.length - SHOW_N);
+
+  return (
+    <section id="publications" className="max-w-6xl mx-auto px-4 py-8">
+      <div className="flex items-center gap-2 mb-3">
+        <BookOpen className="h-5 w-5"/>
+        <h2 className="text-xl font-semibold tracking-tight">Publications</h2>
+        <Button variant="ghost" size="sm" asChild>
+          <a href={PROFILE.scholar} target="_blank" rel="noopener noreferrer" className="gap-1"><LinkIcon className="h-4 w-4"/>Google Scholar</a>
+        </Button>
+      </div>
+      <div className="mb-3 text-xs text-zinc-600 dark:text-zinc-400 flex flex-wrap gap-3">
+        <span>Legend:</span>
+        <span>🗣 long talk</span>
+        <span>🎤 oral</span>
+        <span>🔁 sim→real</span>
+        <span>🧪 real-robot</span>
+        <span>📦 benchmark</span>
+        <span>🧾 journal</span>
+      </div>
+      <div className="space-y-3">
+        {visible.map((p, i) => {
+          const key = `${p.title}-${i}`;
+          const isHovered = hovered === key;
+          const isOtherHovered = hovered !== null && hovered !== key;
+
+          return (
+            <Card
+              key={key}
+              className={`border-l-4 border-l-[#E5E1EE] dark:border-l-[#E5E1EE]/70 transition-all duration-500 ease-in-out cursor-default ${
+                isHovered
+                  ? "ring-2 ring-[#E5E1EE] dark:ring-[#E5E1EE]/30 scale-[1.02] shadow-xl z-20"
+                  : isOtherHovered
+                  ? "opacity-40 blur-sm"
+                  : ""
+              }`}
+              onMouseEnter={() => setHovered(key)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <CardHeader className="pb-2">
+                <div className="text-xs text-zinc-500 dark:text-zinc-400">{p.year} · {p.venue}</div>
+                <CardTitle className="text-base leading-snug">{p.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0 text-sm">
+                <div className="text-zinc-700 dark:text-zinc-300">{p.authors}</div>
+                {p.tags && p.tags.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span key={t} className={`px-2 py-0.5 rounded-full text-xs ${TAGS.neutral}`}>{t}</span>
+                    ))}
+                  </div>
+                )}
+                {p.icons && p.icons.filter(Boolean).length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-2 text-sm">
+                    {p.icons.filter(Boolean).map((ic) => (
+                      <span key={ic}>{ic}</span>
+                    ))}
+                  </div>
+                )}
+                <div className="mt-3 flex gap-2 flex-wrap">
+                  {p.links.map((l) => (
+                    <Button key={l.label} variant="secondary" size="sm" asChild>
+                      <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+      {remaining > 0 && (
+        <div className="mt-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setExpanded((v) => !v)}
+            aria-expanded={expanded}
+          >
+            {expanded ? "Show fewer" : `Show ${remaining} more`}
+          </Button>
+        </div>
+      )}
     </section>
   );
 }
@@ -716,7 +566,7 @@ function Teaching() {
               <CardTitle className="text-base">{t.course}</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-zinc-700 dark:text-zinc-300">
-              {t.role} · {t.term}
+              {t.role}{t.term ? ` · ${t.term}` : ""}
             </CardContent>
           </Card>
         ))}
@@ -740,9 +590,9 @@ function News() {
       <div className="space-y-3">
         {visible.map((n) => (
           <Card key={n.text}>
-            <CardContent className="pt-6 text-sm flex items-center justify-between">
-              <span className="text-zinc-500 dark:text-zinc-400">{n.date}</span>
-              <span className="ml-3">{n.text}</span>
+            <CardContent className="pt-6 text-sm flex items-center justify-between gap-3">
+              <span className="text-zinc-500 dark:text-zinc-400 shrink-0">{n.date}</span>
+              <span className="text-right sm:text-left sm:ml-3 flex-1">{n.text}</span>
             </CardContent>
           </Card>
         ))}
@@ -825,7 +675,6 @@ export default function AcademicSite() {
           <News />
           <Research />
           <Publications />
-          <Projects />
           <Teaching />
           <Contact />
         </main>

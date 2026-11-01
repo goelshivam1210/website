@@ -18,12 +18,7 @@ export const metadata: Metadata = {
   title: "Shivam Goel",
   description: "Robotics & RL Research",
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icon.png", type: "image/png" },
-    ],
-    shortcut: "/icon.png",
-    apple: "/apple-touch-icon.png",
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     title: "Shivam Goel",
