@@ -12,7 +12,7 @@ import Link from "next/link";
 // ---- Quick config (edit these) ----
 const PROFILE = {
   name: "Shivam Goel",
-  title: "Postdoctoral Scholar, University of Alberta",
+  title: "Postdoctoral Researcher, University of Alberta",
   location: "Edmonton, AB · University of Alberta & Amii",
   office: "7-250C University Commons (UComm)",
   address: "Edmonton, Alberta, Canada T6G 2E8",
@@ -159,7 +159,7 @@ const TEACHING = [
 const DISSERTATION_URL = "https://www.proquest.com/openview/58923caf9b69fdec8403710154acaefb/1?pq-origsite=gscholar&cbl=18750&diss=y";
 
 const NEWS: { date: string; text: ReactNode }[] = [
-  { date: "Fall 2026", text: "Joined the University of Alberta and Amii as a Postdoctoral Scholar with Matt Taylor in the IRL Lab." },
+  { date: "Fall 2026", text: "Joined the University of Alberta and Amii as a Postdoctoral Researcher with Matt Taylor in the IRL Lab." },
   { date: "Aug 2026", text: "Graduated from Tufts University." },
   { date: "May 2026", text: <>Defended my Ph.D. dissertation, <a href={DISSERTATION_URL} target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Structured Abstractions for Learning and Adaptation in Open-World Environments</a>.</> },
   { date: "May 2025", text: "FLEX at ICRA 2025 (Atlanta, GA)." },
@@ -254,7 +254,7 @@ function Hero({ educationExpanded, setEducationExpanded }: { educationExpanded: 
 
             <div className="mt-4 space-y-3 leading-relaxed text-zinc-700 dark:text-zinc-300">
               <p>
-                I am an incoming postdoctoral scholar at the{" "}
+                I am an incoming postdoctoral researcher at the{" "}
                 <a href="https://www.ualberta.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">University of Alberta</a>
                 {" "}and{" "}
                 <a href="https://www.amii.ca" target="_blank" rel="noopener noreferrer" className="text-[#004777] dark:text-[#3AAFB9] hover:underline">Amii</a>

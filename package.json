@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "sync:cv": "bash scripts/sync-cv.sh",
+    "predev": "npm run sync:cv",
+    "prebuild": "npm run sync:cv",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
